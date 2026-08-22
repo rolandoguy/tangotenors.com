@@ -42,8 +42,9 @@ nav { display:flex; gap:28px; }
 @media (min-width:601px) {
   .shell { width:min(calc(100% - 112px), 1280px); }
   .portrait { padding-bottom:120px; display:grid; grid-template-columns:30% 70%; align-items:center; }
-  .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; padding-right:48px; }
-  .portrait-lead { margin:0; max-width:260px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(23px, 2.2vw, 34px); line-height:1.08; letter-spacing:-.025em; }
+  .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; align-self:start; margin-top:clamp(150px, 12vw, 190px); padding-right:48px; }
+  .portrait-lead { margin:0; max-width:250px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(22px, 2vw, 30px); line-height:1.08; letter-spacing:-.025em; }
+  .portrait-intro .text-link { font-size:14px; border-bottom-width:2px; }
   .portrait-frame { grid-column:2; grid-row:1; width:88%; max-width:760px; margin-left:0; }
   .portrait-caption { position:static; grid-column:2; grid-row:2; margin:16px 0 0; }
   .hero { padding-bottom:128px; }
