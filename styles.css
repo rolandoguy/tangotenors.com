@@ -18,6 +18,7 @@ nav { display:flex; gap:28px; }
 .text-link { display:inline-flex; gap:10px; align-items:center; border-bottom:1px solid currentColor; padding-bottom:5px; font-size:13px; }
 .text-link span { color:var(--accent); }
 .portrait { position:relative; padding-bottom:clamp(120px, 17vw, 240px); }
+.portrait-intro { display:none; }
 .portrait-frame { width:min(78%, 960px); margin-left:auto; }
 .portrait-frame img { display:block; width:100%; aspect-ratio:1; object-fit:cover; object-position:center; }
 .portrait-caption { position:absolute; left:0; bottom:clamp(150px, 19vw, 280px); margin:0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(25px, 3vw, 44px); font-weight:700; line-height:.9; letter-spacing:.02em; }
@@ -38,6 +39,26 @@ nav { display:flex; gap:28px; }
 .contact-links span { font-family:"DM Sans", sans-serif; color:var(--accent); font-size:.55em; }
 .site-footer { border-top:1px solid var(--line); padding-block:22px 30px; color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
 .site-footer p { margin:0; }
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:110px; } .hero-foot { align-items:flex-start; flex-direction:column; margin-top:0; } .hero-foot p { max-width:270px; } .portrait { padding-bottom:125px; } .portrait-frame { width:100%; } .portrait-caption { position:static; margin-top:18px; font-size:30px; } .section-grid { grid-template-columns:1fr; gap:30px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (min-width:601px) {
+  .shell { width:min(calc(100% - 112px), 1280px); }
+  .portrait { padding-bottom:120px; display:grid; grid-template-columns:30% 70%; align-items:center; }
+  .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; padding-right:48px; }
+  .portrait-lead { margin:0; max-width:260px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(23px, 2.2vw, 34px); line-height:1.08; letter-spacing:-.025em; }
+  .portrait-frame { grid-column:2; grid-row:1; width:88%; max-width:760px; margin-left:0; }
+  .portrait-caption { position:static; grid-column:2; grid-row:2; margin:16px 0 0; }
+  .hero { padding-bottom:128px; }
+  .section-grid { grid-template-columns:30% 70%; gap:0; }
+  .about { padding-bottom:128px; }
+  .statement { max-width:620px; }
+  .names { margin-top:38px; }
+  .concert { padding-bottom:128px; }
+  .concert-detail { max-width:620px; }
+  .concert-time { margin-top:8px !important; }
+  .venue { margin-top:22px !important; }
+  .ticket-price { margin-top:20px !important; }
+  .ticket-link { margin-top:22px; }
+  .contact { padding-bottom:112px; }
+}
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:110px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .section-grid { grid-template-columns:1fr; gap:30px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } }
