@@ -10,6 +10,8 @@ a:hover { color:var(--accent); }
 .wordmark { font-weight:500; letter-spacing:.12em; }
 nav { display:flex; gap:28px; }
 .hero { min-height:auto; padding-top:0; padding-bottom:clamp(110px, 15vw, 210px); display:flex; flex-direction:column; justify-content:flex-start; }
+.hero-title { margin:clamp(70px, 11vw, 150px) 0 0; max-width:900px; font-family:"Playfair Display", Georgia, serif; font-size:clamp(86px, 15vw, 220px); font-weight:500; line-height:.78; letter-spacing:-.075em; text-transform:uppercase; }
+.hero-title span { color:var(--accent); margin-left:clamp(20px, 8vw, 120px); }
 .eyebrow { margin:0; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
 .wordmark-large { margin:clamp(42px, 8vw, 94px) 0 0; width:min(78vw, 930px); line-height:0; }
 .wordmark-large img { display:block; width:100%; height:auto; }
@@ -37,6 +39,7 @@ nav { display:flex; gap:28px; }
 .ticket-price { color:var(--muted); margin-top:28px !important; }
 .ticket-link { display:inline-flex; gap:14px; align-items:center; margin-top:28px; padding:15px 18px 13px; background:var(--accent); color:var(--light); font-family:"Barlow Condensed", Impact, sans-serif; font-size:20px; font-weight:700; letter-spacing:.04em; }
 .ticket-link span { font-family:"DM Sans",sans-serif; }
+.ticket-link-hero { background:transparent; color:var(--ink); border-bottom:1px solid var(--ink); padding:0 0 6px; font-family:"DM Sans",sans-serif; font-size:13px; font-weight:500; letter-spacing:.04em; }
 .contact { padding-bottom:130px; }
 .contact-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; font-family:"Playfair Display", Georgia, serif; font-size:clamp(24px, 3vw, 40px); line-height:1.05; overflow-wrap:anywhere; }
 .contact-links span { font-family:"DM Sans", sans-serif; color:var(--accent); font-size:.55em; }
@@ -63,6 +66,6 @@ nav { display:flex; gap:28px; }
   .ticket-link { margin-top:22px; }
   .contact { padding-bottom:112px; }
 }
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:110px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:92px; } .hero-title { margin-top:80px; font-size:clamp(76px, 23vw, 112px); line-height:.8; } .hero-title span { margin-left:18px; } .hero-foot { margin-top:72px; flex-direction:column; align-items:flex-start; gap:28px; } .hero-foot p { max-width:290px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } }

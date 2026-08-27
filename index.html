@@ -3,20 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Tango Tenors brings Argentine tango, Italian song and two voices together in a concert journey from Buenos Aires through Naples to Berlin." />
+    <meta name="description" content="Tango Tenors: two tenor voices, Argentine tango and Italian song in Berlin. See Rolando Guy and Gastón Efficace live at Clärchens Ballhaus on 6 September 2026." />
     <link rel="canonical" href="https://tangotenors.com/" />
-    <meta property="og:title" content="Tango Tenors | Buenos Aires · Napoli · Berlin" />
-    <meta property="og:description" content="Tango Tenors brings Argentine tango, Italian song and two voices together in a concert journey from Buenos Aires through Naples to Berlin." />
+    <meta property="og:title" content="Tango Tenors | Argentine tango in Berlin" />
+    <meta property="og:description" content="Two tenor voices, Argentine tango and Italian song. Live at Clärchens Ballhaus, Berlin, 6 September 2026." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tangotenors.com/" />
+    <meta property="og:image" content="https://tangotenors.com/assets/tango-tenors-piano.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tango Tenors | Buenos Aires · Napoli · Berlin" />
-    <meta name="twitter:description" content="Tango Tenors brings Argentine tango, Italian song and two voices together in a concert journey from Buenos Aires through Naples to Berlin." />
-    <title>Tango Tenors | Buenos Aires · Napoli · Berlin</title>
+    <meta name="twitter:title" content="Tango Tenors | Argentine tango in Berlin" />
+    <meta name="twitter:description" content="Two tenor voices, Argentine tango and Italian song. Live at Clärchens Ballhaus, Berlin, 6 September 2026." />
+    <meta name="twitter:image" content="https://tangotenors.com/assets/tango-tenors-piano.png" />
+    <title>Tango Tenors | Argentine tango in Berlin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"MusicGroup",
+      "name":"Tango Tenors",
+      "url":"https://tangotenors.com/",
+      "sameAs":["https://www.instagram.com/tangotenors/"],
+      "member":[
+        {"@type":"Person","name":"Rolando Guy"},
+        {"@type":"Person","name":"Gastón Efficace"}
+      ],
+      "event":{
+        "@type":"MusicEvent",
+        "name":"Tango Tenors at Clärchens Ballhaus",
+        "startDate":"2026-09-06T20:00:00+02:00",
+        "location":{"@type":"Place","name":"Clärchens Ballhaus, Spiegelsaal","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"}},
+        "performer":{"@type":"MusicGroup","name":"Tango Tenors"},
+        "offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","url":"https://www.yesticket.org/event/de/musik-der-welt-tango-tenors-06-09-26/","availability":"https://schema.org/InStock"}
+      }
+    }
+    </script>
   </head>
   <body>
     <header class="site-header shell">
@@ -28,10 +51,18 @@
     </header>
 
     <main>
+      <section class="hero shell" aria-labelledby="hero-title">
+        <p class="eyebrow">Buenos Aires · Napoli · Berlin</p>
+        <h1 class="hero-title" id="hero-title">Tango<br /><span>Tenors</span></h1>
+        <div class="hero-foot">
+          <p>Two tenor voices. Argentine tango and Italian song. A concert born between Buenos Aires, Naples and Berlin.</p>
+          <a class="ticket-link ticket-link-hero" href="#concert">SEE THE NEXT CONCERT <span aria-hidden="true">↘</span></a>
+        </div>
+      </section>
       <section class="portrait shell" aria-label="Rolando Guy and Gastón Efficace at the piano">
         <div class="portrait-intro">
           <p class="eyebrow">Buenos Aires · Napoli · Berlin</p>
-          <p class="portrait-lead">Tango, Italian song and two voices crossing the Atlantic.</p>
+          <p class="portrait-lead">A night of tango, song and two voices crossing the Atlantic.</p>
           <a class="text-link" href="#concert">NEXT CONCERT <span aria-hidden="true">↗</span></a>
         </div>
         <div class="portrait-frame"><img src="assets/tango-tenors-piano.png" alt="Rolando Guy and Gastón Efficace standing together in front of a piano" /></div>
