@@ -45,6 +45,7 @@ nav { display:flex; gap:28px; }
 .contact-links span { font-family:"DM Sans", sans-serif; color:var(--accent); font-size:.55em; }
 .site-footer { border-top:1px solid var(--line); padding-block:22px 30px; color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
 .site-footer p { margin:0; }
+.home-footer { display:flex; justify-content:space-between; gap:24px; }
 @media (min-width:601px) {
   .shell { width:min(calc(100% - 112px), 1280px); }
   .portrait { padding-bottom:120px; display:grid; grid-template-columns:30% 70%; align-items:center; }
