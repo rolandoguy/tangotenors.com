@@ -68,6 +68,12 @@ html[data-lang="en"] span.lang-en { display:inline; }
 .contact-details a:hover { border-color:currentColor; }
 .press-footer { display:flex; justify-content:space-between; gap:24px; }
 .press-footer div { display:flex; gap:22px; }
+@media (min-width:1180px) {
+  .programme-section { width:min(calc(100% - 112px),1440px); grid-template-columns:20% 80%; }
+  .programme-section .section-label { padding-right:clamp(48px,5vw,80px); }
+  .programme-layout { grid-template-columns:minmax(340px,.9fr) minmax(0,1.5fr); gap:clamp(84px,7vw,120px); }
+  .programme-list { column-gap:clamp(42px,4vw,64px); }
+}
 @media (max-width:900px) {
   .press-hero { grid-template-columns:1fr; min-height:auto; }
   .press-hero-copy { order:1; }
