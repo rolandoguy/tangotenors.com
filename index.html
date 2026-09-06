@@ -30,14 +30,20 @@
         {"@type":"Person","name":"Rolando Guy"},
         {"@type":"Person","name":"Gastón Efficace"}
       ],
-      "event":{
+      "event":[{
         "@type":"MusicEvent",
         "name":"Tango Tenors at Clärchens Ballhaus",
         "startDate":"2026-09-06T20:00:00+02:00",
         "location":{"@type":"Place","name":"Clärchens Ballhaus, Spiegelsaal","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"}},
         "performer":{"@type":"MusicGroup","name":"Tango Tenors"},
         "offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","url":"https://www.yesticket.org/event/de/musik-der-welt-tango-tenors-06-09-26/","availability":"https://schema.org/InStock"}
-      }
+      },{
+        "@type":"MusicEvent",
+        "name":"Tango Tenors at Haus der Sinne",
+        "startDate":"2026-10-18",
+        "location":{"@type":"Place","name":"Haus der Sinne","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"}},
+        "performer":{"@type":"MusicGroup","name":"Tango Tenors"}
+      }]
     }
     </script>
   </head>
@@ -87,12 +93,18 @@
 
       <section class="concert shell section-grid" id="concert" aria-labelledby="concert-title">
         <p class="eyebrow" id="concert-title">NEXT CONCERT</p>
+        <div class="concert-list">
         <div class="concert-detail">
           <p class="concert-date">06 SEPTEMBER 2026</p>
           <p class="concert-time">20:00</p>
           <p class="venue">CLÄRCHENS BALLHAUS<br />SPIEGELSAAL<br />BERLIN</p>
           <p class="ticket-price">Tickets 25 €</p>
           <a class="ticket-link" href="https://www.yesticket.org/event/de/musik-der-welt-tango-tenors-06-09-26/" target="_blank" rel="noopener noreferrer">GET TICKETS <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="concert-detail concert-detail-next">
+          <p class="concert-date">18 OCTOBER 2026</p>
+          <p class="venue">TANGO TENORS<br />HAUS DER SINNE<br />BERLIN</p>
+        </div>
         </div>
       </section>
 
