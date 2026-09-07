@@ -31,15 +31,15 @@ nav { display:flex; gap:28px; }
 .live-header { margin-bottom:clamp(30px, 5vw, 64px); }
 .live-section figure { margin:0; }
 .live-section img { display:block; width:100%; height:auto; }
-.live-feature { width:min(84%, 1040px); margin:0 auto 56px; }
+.live-feature { width:min(88%, 1040px); margin:0 auto 72px; }
 .live-grid { display:grid; gap:24px; }
-.live-grid-pair { width:74%; margin-left:auto; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:28px; }
-.live-grid-stage, .live-grid-closing { display:block; }
-.live-grid-stage figure:first-child { width:64%; }
-.live-grid-stage figure:last-child { width:34%; margin:96px 0 0 auto; }
-.live-grid-closing figure:first-child { width:64%; }
-.live-grid-closing figure:nth-child(2) { width:31%; margin:32px 0 0 auto; }
-.live-grid-closing figure:last-child { width:70%; margin:96px auto 0; }
+.live-grid-pair, .live-grid-stage, .live-grid-closing { width:min(100%, 1040px); margin-left:auto; margin-right:auto; }
+.live-grid-pair { width:min(82%, 860px); grid-template-columns:repeat(2, minmax(0, 1fr)); gap:32px; }
+.live-grid-stage { width:min(88%, 920px); grid-template-columns:1.45fr 1fr; gap:56px; align-items:center; }
+.live-grid-closing { display:block; }
+.live-grid-closing figure:first-child { width:72%; margin:0 auto; }
+.live-grid-closing figure:nth-child(2) { width:56%; margin:88px auto 0; }
+.live-grid-closing figure:last-child { width:78%; margin:104px auto 0; }
 .photo-credit { margin:24px 0 0; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
 .photo-credit a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
 .section-grid { display:grid; grid-template-columns:1fr 2fr; gap:24px; border-top:1px solid var(--line); padding-top:22px; }
@@ -89,6 +89,6 @@ nav { display:flex; gap:28px; }
   .ticket-link { margin-top:22px; }
   .contact { padding-bottom:112px; }
 }
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:92px; } .project-intro { grid-template-columns:1fr; gap:24px; margin-bottom:36px; font-size:16px; } .hero-title { margin-top:56px; font-size:clamp(76px, 23vw, 112px); line-height:.8; } .hero-title span { margin-left:18px; } .hero-foot { margin-top:72px; flex-direction:column; align-items:flex-start; gap:28px; } .hero-foot p { max-width:290px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-feature { margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:92px; } .project-intro { grid-template-columns:1fr; gap:24px; margin-bottom:36px; font-size:16px; } .hero-title { margin-top:56px; font-size:clamp(76px, 23vw, 112px); line-height:.8; } .hero-title span { margin-left:18px; } .hero-foot { margin-top:72px; flex-direction:column; align-items:flex-start; gap:28px; } .hero-foot p { max-width:290px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-feature { margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } }
