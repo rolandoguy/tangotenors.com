@@ -45,10 +45,9 @@ html[data-lang="en"] span.lang-en { display:inline; }
 .programme-list li::before { content:counter(programme,decimal-leading-zero); color:var(--accent); font-family:"Barlow Condensed",Impact,sans-serif; font-weight:700; }
 .photo-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(24px,4vw,52px) 24px; }
 .photo-card { min-width:0; }
-.photo-card-wide { grid-column:1 / -1; }
+.photo-card-featured { grid-column:1 / -1; max-width:860px; margin-inline:auto; }
 .photo-card > a { display:block; background:#080808; overflow:hidden; }
-.photo-card img { display:block; width:100%; height:min(54vw,660px); object-fit:cover; object-position:center; transition:transform .4s ease; }
-.photo-card:not(.photo-card-wide) img { height:min(64vw,680px); object-position:top center; }
+.photo-card img { display:block; width:100%; height:auto; object-fit:contain; transition:transform .4s ease; }
 .photo-card a:hover img { transform:scale(1.015); }
 .photo-meta { display:flex; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding-top:14px; margin-top:14px; }
 .photo-meta strong,.photo-meta small { display:block; }
@@ -93,8 +92,8 @@ html[data-lang="en"] span.lang-en { display:inline; }
   .press-button { width:100%; }
   .press-section { padding-bottom:110px; }
   .artist-grid,.photo-grid { grid-template-columns:1fr; }
-  .photo-card-wide { grid-column:auto; }
-  .photo-card img,.photo-card:not(.photo-card-wide) img { height:auto; max-height:none; }
+  .photo-card-featured { grid-column:auto; max-width:none; }
+  .photo-card img { height:auto; max-height:none; }
   .programme-list { column-count:1; }
   .photo-meta { flex-direction:column; gap:16px; }
   .download-link { align-self:flex-start; }
