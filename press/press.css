@@ -22,6 +22,7 @@ html[data-lang="en"] span.lang-en { display:inline; }
 .press-hero-image img { display:block; width:100%; aspect-ratio:1; object-fit:cover; }
 .press-hero-image figcaption { display:flex; justify-content:flex-end; margin-top:10px; color:var(--muted); font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
 .press-section { display:grid; grid-template-columns:26% 74%; gap:0; border-top:1px solid var(--line); padding:22px 0 clamp(110px,13vw,180px); }
+.press-about { padding-bottom:clamp(72px,8vw,112px); }
 .section-label { display:flex; flex-direction:column; justify-content:space-between; min-height:84px; padding-right:48px; }
 .section-number { color:var(--accent); font-family:"Barlow Condensed",Impact,sans-serif; font-size:30px; font-weight:700; }
 .section-content { min-width:0; }
