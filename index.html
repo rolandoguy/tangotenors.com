@@ -69,7 +69,7 @@
         <div class="hero-foot">
           <p>Two tenor voices. Argentine tango and Italian song. A concert born between Buenos Aires, Naples and Berlin.</p>
         </div>
-        <div class="hero-concert-cta">
+        <div class="hero-concert-cta" id="upcoming-concert-cta" data-event-end="2026-10-18T20:30:00+02:00" data-time-zone="Europe/Berlin">
           <p>18. OKTOBER 2026 · HAUS DER SINNE · 19:00 UHR</p>
           <a class="ticket-link ticket-link-hero" href="https://www.eventim-light.com/de/a/5e20da0da5bbfa00015c7e58/e/6a9d9d7e4d592f67199935fd" target="_blank" rel="noopener noreferrer">JETZT TICKETS SICHERN <span aria-hidden="true">↗</span></a>
         </div>
@@ -174,6 +174,15 @@
         </div>
       </section>
     </main>
+    <script>
+      (() => {
+        const cta = document.getElementById("upcoming-concert-cta");
+        if (!cta) return;
+        const eventEnd = new Date(cta.dataset.eventEnd);
+        const berlinNow = new Date(new Date().toLocaleString("en-US", { timeZone: cta.dataset.timeZone }));
+        if (berlinNow >= eventEnd) cta.hidden = true;
+      })();
+    </script>
 
     <footer class="site-footer shell home-footer"><p>© 2026 Tango Tenors</p><a href="/press/">Press</a></footer>
   </body>
