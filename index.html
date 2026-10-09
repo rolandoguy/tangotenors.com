@@ -20,33 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@type":"MusicGroup",
-      "name":"Tango Tenors",
-      "url":"https://tangotenors.com/",
-      "sameAs":["https://www.instagram.com/tangotenors/"],
-      "member":[
-        {"@type":"Person","name":"Rolando Guy"},
-        {"@type":"Person","name":"Gastón Efficace"}
-      ],
-        "event":[{
-        "@type":"MusicEvent",
-        "name":"Tango Tenors at Haus der Sinne",
-        "startDate":"2026-10-18T19:00:00+02:00",
-        "location":{"@type":"Place","name":"Haus der Sinne","address":{"@type":"PostalAddress","streetAddress":"Ystader Straße 10","postalCode":"10437","addressLocality":"Berlin","addressCountry":"DE"}},
-        "performer":{"@type":"MusicGroup","name":"Tango Tenors"},
-        "offers":[{"@type":"Offer","name":"Normalpreis","price":"15","priceCurrency":"EUR"},{"@type":"Offer","name":"Ermäßigt","price":"12","priceCurrency":"EUR"}]
-      },{
-        "@type":"MusicEvent",
-        "name":"Tango Tenors at Clärchens Ballhaus",
-        "startDate":"2026-12-06T20:00:00+01:00",
-        "location":{"@type":"Place","name":"Clärchens Ballhaus","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"}},
-        "performer":{"@type":"MusicGroup","name":"Tango Tenors"}
-      }]
-    }
-    </script>
+
   </head>
   <body>
     <header class="site-header shell">
@@ -69,9 +43,9 @@
         <div class="hero-foot">
           <p>Two tenor voices. Argentine tango and Italian song. A concert born between Buenos Aires, Naples and Berlin.</p>
         </div>
-        <div class="hero-concert-cta" id="upcoming-concert-cta" data-event-end="2026-10-18T20:30:00+02:00" data-time-zone="Europe/Berlin">
-          <p>18. OKTOBER 2026 · HAUS DER SINNE · 19:00 UHR</p>
-          <a class="ticket-link ticket-link-hero" href="https://www.eventim-light.com/de/a/5e20da0da5bbfa00015c7e58/e/6a9d9d7e4d592f67199935fd" target="_blank" rel="noopener noreferrer">JETZT TICKETS SICHERN <span aria-hidden="true">↗</span></a>
+        <div class="hero-concert-cta" id="upcoming-concert-cta" hidden>
+          <p class="hero-concert-date"></p>
+          <a class="ticket-link ticket-link-hero"></a>
         </div>
       </section>
       <section class="portrait shell" aria-label="Rolando Guy and Gastón Efficace at the piano">
@@ -131,21 +105,8 @@
       </section>
 
       <section class="concert shell section-grid" id="concert" aria-labelledby="concert-title">
-        <p class="eyebrow" id="concert-title">NEXT CONCERTS</p>
-        <div class="concert-list">
-        <div class="concert-detail">
-          <p class="concert-date">18 OCTOBER 2026</p>
-          <p class="concert-time">19:00</p>
-          <p class="venue">HAUS DER SINNE<br />YSTADER STRASSE 10<br />10437 BERLIN</p>
-          <p class="ticket-price">Abendkasse: 15 € / ermäßigt 12 €<br />VVK zzgl. Gebühren</p>
-          <a class="ticket-link" href="https://www.eventim-light.com/de/a/5e20da0da5bbfa00015c7e58/e/6a9d9d7e4d592f67199935fd" target="_blank" rel="noopener noreferrer">GET TICKETS <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="concert-detail">
-          <p class="concert-date">6 DECEMBER 2026</p>
-          <p class="concert-time">20:00</p>
-          <p class="venue">CLÄRCHENS BALLHAUS<br />BERLIN</p>
-        </div>
-        </div>
+        <p class="eyebrow" id="concert-title">CONCERT ARCHIVE</p>
+        <div class="concert-list" id="concert-list"></div>
       </section>
 
       <section class="live-section shell" aria-labelledby="closing-title">
@@ -176,11 +137,47 @@
     </main>
     <script>
       (() => {
+        const ticketUrl = "https://www.eventim-light.com/de/a/5e20da0da5bbfa00015c7e58/e/6a9d9d7e4d592f67199935fd";
+        const events = [
+          { name: "Tango Tenors at Haus der Sinne", venue: "Haus der Sinne", address: ["Ystader Straße 10", "10437 Berlin"], start: "2026-10-18T19:00:00+02:00", end: "2026-10-18T20:30:00+02:00", dateDe: "18. OKTOBER 2026", dateEn: "18 OCTOBER 2026", time: "19:00", ticketUrl, price: "Abendkasse: 15 € / ermäßigt 12 €\nVVK zzgl. Gebühren", offers: [{ name: "Normalpreis", price: "15" }, { name: "Ermäßigt", price: "12" }] },
+          { name: "Tango Tenors at Clärchens Ballhaus", venue: "Clärchens Ballhaus", address: ["Berlin"], start: "2026-12-06T20:00:00+01:00", end: "2026-12-06T21:30:00+01:00", dateDe: "6. DEZEMBER 2026", dateEn: "6 DECEMBER 2026", time: "20:00", ticketUrl: null }
+        ];
+        const timeZone = "Europe/Berlin";
+        const now = new Date();
+        const berlinDate = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+        const nextEvent = events.find(event => {
+          const eventDate = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(event.end));
+          return eventDate > berlinDate || (eventDate === berlinDate && new Date(event.end) > now);
+        });
         const cta = document.getElementById("upcoming-concert-cta");
-        if (!cta) return;
-        const eventEnd = new Date(cta.dataset.eventEnd);
-        const berlinNow = new Date(new Date().toLocaleString("en-US", { timeZone: cta.dataset.timeZone }));
-        if (berlinNow >= eventEnd) cta.hidden = true;
+        const archive = document.getElementById("concert-list");
+        document.getElementById("concert-title").textContent = "CONCERT ARCHIVE";
+        const eventSchema = events.map(event => ({
+          "@type": "MusicEvent", name: event.name, startDate: event.start, endDate: event.end,
+          location: { "@type": "Place", name: event.venue, address: { "@type": "PostalAddress", ...(event.address.length > 1 ? { streetAddress: event.address[0], postalCode: event.address[1].split(" ")[0], addressLocality: "Berlin" } : { addressLocality: "Berlin" }), addressCountry: "DE" } },
+          performer: { "@type": "MusicGroup", name: "Tango Tenors" },
+          ...(event.offers ? { offers: event.offers.map(offer => ({ "@type": "Offer", ...offer, priceCurrency: "EUR" })) } : {})
+        }));
+        const musicGroup = { "@context": "https://schema.org", "@type": "MusicGroup", name: "Tango Tenors", url: "https://tangotenors.com/", sameAs: ["https://www.instagram.com/tangotenors/"], member: [{ "@type": "Person", name: "Rolando Guy" }, { "@type": "Person", name: "Gastón Efficace" }], event: eventSchema };
+        const schemaScript = document.createElement("script");
+        schemaScript.type = "application/ld+json";
+        schemaScript.textContent = JSON.stringify(musicGroup);
+        document.head.append(schemaScript);
+        const esc = value => value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[character]);
+        archive.innerHTML = events.map(event => `<article class="concert-detail"><p class="concert-date">${esc(event.dateEn)}</p><p class="concert-time">${esc(event.time)}</p><p class="venue">${esc(event.venue).toUpperCase()}<br />${event.address.map(esc).join("<br />").toUpperCase()}</p>${event.price ? `<p class="ticket-price">${esc(event.price).replace("\n", "<br />")}</p>` : ""}${event.ticketUrl ? `<a class="ticket-link" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">GET TICKETS <span aria-hidden="true">↗</span></a>` : ""}</article>`).join("");
+        if (!nextEvent) return;
+        cta.querySelector(".hero-concert-date").textContent = `${nextEvent.dateDe} · ${nextEvent.venue.toUpperCase()} · ${nextEvent.time} UHR`;
+        const link = cta.querySelector("a");
+        if (nextEvent.ticketUrl) {
+          link.href = nextEvent.ticketUrl;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.innerHTML = "JETZT TICKETS SICHERN <span aria-hidden=\"true\">↗</span>";
+        } else {
+          link.href = "#concert";
+          link.textContent = "KONZERTDETAILS ANSEHEN";
+        }
+        cta.hidden = false;
       })();
     </script>
 
