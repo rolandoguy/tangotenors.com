@@ -5,6 +5,7 @@
       archive: "KONZERTARCHIV",
       details: "KONZERTDETAILS ANSEHEN",
       timeSuffix: "UHR",
+      map: "ANFAHRT & VERANSTALTUNGSORT",
       groupName: "Tango Tenors",
       members: ["Rolando Guy", "Gastón Efficace"]
     },
@@ -12,6 +13,7 @@
       archive: "CONCERT ARCHIVE",
       details: "VIEW CONCERT DETAILS",
       timeSuffix: "",
+      map: "DIRECTIONS & VENUE",
       groupName: "Tango Tenors",
       members: ["Rolando Guy", "Gastón Efficace"]
     }
@@ -30,6 +32,14 @@
   const esc = value => String(value).replace(/[&<>"']/g, character => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
   })[character]);
+  const trackOutboundClick = (eventName, destination) => {
+    const params = new URLSearchParams(window.location.search);
+    const referrerHost = (() => { try { return new URL(document.referrer).hostname; } catch { return ""; } })();
+    const source = params.get("utm_source") || (/(^|\.)instagram\.com$/i.test(referrerHost) ? "instagram" : "direct_or_other");
+    const payload = { event_category: "outbound", destination, traffic_source: source, device: matchMedia("(max-width: 600px)").matches ? "mobile" : "desktop" };
+    if (typeof window.gtag === "function") window.gtag("event", eventName, payload);
+    else if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: eventName, ...payload });
+  };
   const addressSchema = event => ({
     "@type": "PostalAddress",
     ...(event.address.length > 1 ? {
@@ -48,20 +58,43 @@
         <p class="concert-time">${esc(event.time)}</p>
         <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${event.address.map(esc).join("<br />").toLocaleUpperCase(language)}</p>
         ${event.price ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
-        ${event.ticketUrl ? `<a class="ticket-link" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : ""}
+        ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : ""}
       </article>`).join("");
   }
 
   if (nextEvent) {
     const cta = document.getElementById("upcoming-concert-cta");
     if (cta) {
+      cta.closest(".hero")?.classList.add("has-upcoming-event");
       const date = cta.querySelector(".hero-concert-date");
       const link = cta.querySelector("a");
-      date.textContent = [nextEvent.dateLabel[language], nextEvent.venue.toLocaleUpperCase(language), `${nextEvent.time}${copy.timeSuffix ? ` ${copy.timeSuffix}` : ""}`].join(" · ");
+      date.textContent = `${nextEvent.weekdayLabel?.[language] ? `${nextEvent.weekdayLabel[language]}, ` : ""}${nextEvent.dateLabel[language]}`;
+      const place = cta.querySelector(".hero-concert-place");
+      place.textContent = [
+        `${nextEvent.time}${copy.timeSuffix ? ` ${copy.timeSuffix}` : ""}`,
+        nextEvent.venue.toLocaleUpperCase(language),
+        nextEvent.locationLabel?.[language] || nextEvent.address.join(", ").toLocaleUpperCase(language)
+      ].join(" | ");
+      const invitation = cta.querySelector(".hero-concert-invitation");
+      invitation.textContent = nextEvent.invitation?.[language] || "";
+      invitation.hidden = !invitation.textContent;
+      const description = cta.querySelector(".hero-concert-description");
+      description.textContent = nextEvent.description?.[language] || "";
+      description.hidden = !description.textContent;
+      const price = cta.querySelector(".hero-concert-price");
+      price.textContent = nextEvent.price?.[language] || "";
+      price.hidden = !price.textContent;
+      const mapLink = cta.querySelector(".hero-concert-map");
+      if (nextEvent.mapUrl) {
+        mapLink.href = nextEvent.mapUrl;
+        mapLink.dataset.outbound = "maps";
+        mapLink.innerHTML = `${esc(copy.map)} <span aria-hidden="true">↗</span>`;
+      } else mapLink.hidden = true;
       if (nextEvent.ticketUrl) {
         link.href = nextEvent.ticketUrl;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
+        link.dataset.outbound = "ticket";
         link.innerHTML = `${esc(nextEvent.ticketLabel[language])} <span aria-hidden="true">↗</span>`;
       } else {
         link.href = `#${nextEvent.id}`;
@@ -70,6 +103,11 @@
       cta.hidden = false;
     }
   }
+
+  document.addEventListener("click", event => {
+    const link = event.target.closest("a[data-outbound]");
+    if (link) trackOutboundClick(link.dataset.outbound === "ticket" ? "ticket_click" : "maps_click", link.href);
+  });
 
   const musicGroup = {
     "@context": "https://schema.org",
