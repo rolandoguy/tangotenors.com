@@ -5,6 +5,7 @@ html[data-lang="de"] span.lang-de,
 html[data-lang="en"] span.lang-en { display:inline; }
 .press-page { overflow-x:hidden; }
 .press-header { position:relative; z-index:2; }
+.press-header .wordmark { width:112px; }
 .press-header nav { align-items:center; }
 .language-switch { display:flex; align-items:center; gap:6px; color:var(--muted); }
 .language-switch button { appearance:none; border:0; padding:2px 0; background:transparent; color:inherit; font:inherit; font-weight:500; cursor:pointer; }

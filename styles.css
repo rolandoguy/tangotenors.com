@@ -7,7 +7,8 @@ a:hover { color:var(--accent); }
 :focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
 .shell { width:min(100% - 48px, 1240px); margin-inline:auto; }
 .site-header { display:flex; justify-content:space-between; align-items:center; padding-top:26px; font-size:12px; letter-spacing:.04em; }
-.wordmark { font-weight:500; letter-spacing:.12em; }
+.wordmark { display:block; width:112px; line-height:0; }
+.wordmark img { display:block; width:100%; height:auto; }
 nav { display:flex; gap:28px; }
 .hero { min-height:auto; padding-top:0; padding-bottom:clamp(110px, 15vw, 210px); display:flex; flex-direction:column; justify-content:flex-start; }
 .hero-title { margin:clamp(36px, 6vw, 80px) 0 0; max-width:550px; line-height:0; }
@@ -18,21 +19,15 @@ nav { display:flex; gap:28px; }
 .hero-foot { display:flex; justify-content:space-between; align-items:end; gap:24px; max-width:850px; margin-top:80px; }
 .hero-foot p { max-width:300px; margin:0; color:var(--muted); }
 .hero-concert-cta[hidden] { display:none; }
-.hero-concert-cta { display:grid; grid-template-columns:minmax(0, 1fr) auto; align-items:center; gap:8px 28px; margin-top:22px; padding-top:12px; border-top:1px solid var(--line); min-width:0; }
-.hero-concert-copy { min-width:0; }
-.hero-concert-cta p { margin:0; color:var(--muted); }
-.hero-concert-date, .hero-concert-place, .hero-concert-invitation { font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(18px, 2vw, 23px); font-weight:700; letter-spacing:.06em; line-height:1.1; }
-.hero-concert-invitation { margin-top:5px !important; color:var(--ink) !important; }
-.hero-concert-description { margin-top:4px !important; font-size:13px; line-height:1.35; }
-.hero-concert-price { margin-top:4px !important; font-size:12px; line-height:1.3; }
-.hero-concert-map { grid-column:1 / -1; justify-self:start; display:inline-flex; gap:8px; align-items:center; padding-bottom:2px; border-bottom:1px solid var(--line); color:var(--muted); font-size:11px; letter-spacing:.07em; }
-.hero-concert-map span { color:var(--accent); }
+.hero-concert-cta { display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px; margin-top:32px; padding-top:18px; border-top:1px solid var(--line); }
+.hero-concert-cta p { margin:0; color:var(--muted); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(18px, 2vw, 23px); font-weight:700; letter-spacing:.06em; }
 .text-link { display:inline-flex; gap:10px; align-items:center; border-bottom:1px solid currentColor; padding-bottom:5px; font-size:13px; }
 .text-link span { color:var(--accent); }
 .portrait { position:relative; padding-bottom:clamp(120px, 17vw, 240px); }
 .portrait-intro { display:none; }
 .portrait-frame { width:min(78%, 960px); margin-left:auto; }
 .portrait-frame img { display:block; width:100%; aspect-ratio:1; object-fit:cover; object-position:center; }
+.portrait-caption { position:absolute; left:0; bottom:clamp(150px, 19vw, 280px); margin:0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(25px, 3vw, 44px); font-weight:700; line-height:.9; letter-spacing:.02em; }
 .video-section { padding-bottom:clamp(110px, 13vw, 170px); }
 .video-frame { width:min(100%, 780px); aspect-ratio:16 / 9; }
 .video-frame iframe { display:block; width:100%; height:100%; border:0; }
@@ -86,11 +81,12 @@ nav { display:flex; gap:28px; }
   .portrait-lead { margin:0; max-width:250px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(22px, 2vw, 30px); line-height:1.08; letter-spacing:-.025em; }
   .portrait-intro .text-link { font-size:14px; border-bottom-width:2px; }
   .portrait-frame { grid-column:2; grid-row:1; width:88%; max-width:760px; margin-left:0; }
+  .portrait-caption { position:static; grid-column:2; grid-row:2; margin:16px 0 0; }
   .hero { padding-top:0; padding-bottom:100px; }
   .project-intro { margin-bottom:20px; }
-  .hero-title { margin-top:8px; }
+  .hero-title { margin-top:28px; width:min(100%, 900px); }
   .hero-foot { margin-top:32px; }
-  .hero-concert-cta { margin-top:16px; padding-top:10px; }
+  .hero-concert-cta { margin-top:22px; padding-top:12px; }
   .section-grid { grid-template-columns:30% 70%; gap:0; }
   .about { padding-bottom:128px; }
   .statement { max-width:620px; }
@@ -103,21 +99,7 @@ nav { display:flex; gap:28px; }
   .ticket-link { margin-top:22px; }
   .contact { padding-bottom:112px; }
 }
-@media (min-width:980px) {
-  .hero.has-upcoming-event { display:grid; grid-template-columns:minmax(0, 1fr) minmax(400px, .95fr); grid-template-rows:auto auto auto; align-items:center; column-gap:clamp(48px, 7vw, 112px); row-gap:18px; }
-  .hero.has-upcoming-event .project-intro { grid-column:1; grid-row:1; display:grid; grid-template-columns:1fr; gap:10px; max-width:580px; margin:0; font-size:16px; line-height:1.45; }
-  .hero.has-upcoming-event > .eyebrow { grid-column:1; grid-row:2; }
-  .hero.has-upcoming-event .hero-foot { display:none; }
-  .hero.has-upcoming-event .hero-title { grid-column:1; grid-row:3; justify-self:center; width:100%; max-width:none; margin:0; text-align:center; }
-  .hero.has-upcoming-event .hero-title img { height:clamp(245px, 21.6vw, 300px); margin-inline:auto; }
-  .hero.has-upcoming-event .hero-concert-cta { grid-column:2; grid-row:1 / span 3; align-self:center; width:100%; margin-top:0; padding:0; border:0; grid-template-columns:minmax(0, 1fr); gap:14px; transform:translateY(-24px); }
-  .hero.has-upcoming-event .hero-concert-date, .hero.has-upcoming-event .hero-concert-place, .hero.has-upcoming-event .hero-concert-invitation { font-size:clamp(21px, 2vw, 27px); }
-  .hero.has-upcoming-event .hero-concert-description { max-width:460px; font-size:15px; }
-  .hero.has-upcoming-event .hero-concert-price { font-size:13px; }
-  .hero.has-upcoming-event .ticket-link-hero { justify-self:start; min-height:56px; margin-top:6px; }
-  .hero.has-upcoming-event .hero-concert-map { grid-column:1; }
-}
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-width:0; min-height:auto; padding-top:0; padding-bottom:56px; display:flex; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-label { display:inline; margin:0 7px 0 0; } .intro-en { display:none; } .hero-title { display:flex; justify-content:center; margin:20px 0 0; width:100%; text-align:center; } .hero-title img { height:clamp(105px, 28vw, 122px); margin:0; } .hero-foot { margin-top:20px; flex-direction:column; align-items:flex-start; gap:12px; } .hero-concert-cta { width:100%; grid-template-columns:minmax(0, 1fr); align-items:stretch; gap:7px; margin-top:14px; padding-top:10px; } .hero-concert-copy, .hero-concert-cta p { min-width:0; max-width:100%; overflow-wrap:anywhere; } .hero-concert-date, .hero-concert-place, .hero-concert-invitation { font-size:17px; line-height:1.1; } .hero-concert-description { font-size:12px; } .hero-concert-price { font-size:11px; } .ticket-link-hero { grid-column:1; width:100%; min-height:48px; } .hero-concert-map { grid-column:1; } .hero-foot p { max-width:290px; } .hero.has-upcoming-event .project-intro, .hero.has-upcoming-event .hero-foot { display:none; } .hero.has-upcoming-event .hero-title { margin-top:8px; } .hero.has-upcoming-event .hero-concert-cta { margin-top:22px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:20px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:56px; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-label { display:inline; margin:0 7px 0 0; } .intro-en { display:none; } .hero-title { margin-top:26px; width:min(100%, 900px); } .hero-foot { margin-top:28px; flex-direction:column; align-items:flex-start; gap:20px; } .hero-concert-cta { align-items:stretch; flex-direction:column; gap:8px; margin-top:18px; padding-top:12px; } .hero-concert-cta p { font-size:18px; line-height:1.2; } .ticket-link-hero { width:100%; min-height:52px; } .hero-foot p { max-width:290px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } .hero-concert-cta p { font-size:17px; } }
 
@@ -134,86 +116,4 @@ nav { display:flex; gap:28px; }
 @media (max-width:340px) {
   .site-header { column-gap:8px; }
   .site-header nav { font-size:11px; }
-}
-
-/* Editorial desktop homepage composition */
-@media (min-width:980px) {
-  .hero.has-upcoming-event {
-    display:grid;
-    grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);
-    grid-template-rows:auto auto auto;
-    align-items:center;
-    column-gap:clamp(34px, 5vw, 72px);
-    row-gap:4px;
-    padding-top:8px;
-    padding-bottom:clamp(32px, 4vw, 52px);
-  }
-  .hero.has-upcoming-event .hero-title { grid-column:1; grid-row:1; justify-self:center; align-self:center; width:min(100%,clamp(360px,40vw,580px)); max-width:none; margin:0; line-height:0; text-align:center; }
-  .hero.has-upcoming-event .hero-title img { display:block; width:100%; max-width:100%; height:auto; margin:0; }
-  .hero.has-upcoming-event > .eyebrow { grid-column:1; grid-row:1; justify-self:start; align-self:end; margin:0 0 2px; font-size:12px; }
-  .hero.has-upcoming-event .project-intro { grid-column:1 / -1; grid-row:2; display:grid; grid-template-columns:minmax(0,1fr) minmax(220px,.38fr); align-items:center; gap:clamp(28px,5vw,64px); max-width:none; margin:0; font-size:16px; line-height:1.42; }
-  .hero.has-upcoming-event .project-intro .intro-names { font-size:clamp(17px,1.5vw,20px); line-height:1.35; }
-  .hero.has-upcoming-event .hero-foot { display:none; }
-  .hero.has-upcoming-event .hero-concert-cta { grid-column:1 / -1; grid-row:3; align-self:start; width:100%; margin:0; padding:8px 0 0; border-top:1px solid var(--line); grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:6px 24px; transform:none; }
-  .hero.has-upcoming-event .hero-concert-date { color:var(--ink); font-size:clamp(23px, 2vw, 28px); letter-spacing:.04em; }
-  .hero.has-upcoming-event .hero-concert-place { margin-top:4px; font-size:clamp(18px, 1.7vw, 22px); line-height:1.22; }
-  .hero.has-upcoming-event .hero-concert-invitation { margin-top:6px !important; font-family:"Playfair Display", Georgia, serif; font-size:clamp(23px, 2.2vw, 30px); font-weight:500; letter-spacing:-.02em; line-height:1.15; }
-  .hero.has-upcoming-event .hero-concert-description { max-width:900px; margin-top:6px !important; font-size:14px; line-height:1.45; }
-  .hero.has-upcoming-event .hero-concert-price { margin-top:4px !important; font-size:13px; }
-  .hero.has-upcoming-event .ticket-link-hero { grid-column:2; grid-row:1; justify-self:end; min-height:54px; margin:0; padding-inline:22px; font-size:20px; }
-  .hero.has-upcoming-event .hero-concert-map { grid-column:1; grid-row:2; }
-  .hero-photo { position:relative; grid-column:2; grid-row:1; width:min(100%,clamp(300px,30vw,435px)); margin:0; justify-self:center; align-self:center; }
-  .hero-photo img { display:block; width:100%; height:auto; aspect-ratio:.9 / 1; object-fit:cover; object-position:center; }
-  .hero-photo::after { position:absolute; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,rgba(17,16,15,.08),transparent 12%,transparent 88%,rgba(17,16,15,.08)),linear-gradient(180deg,rgba(17,16,15,.04),transparent 10%,transparent 90%,rgba(17,16,15,.07)); }
-  .portrait { display:block; padding-top:0; padding-bottom:clamp(64px, 8vw, 104px); }
-  .portrait-intro { display:block; margin:0; padding:0; }
-  .portrait-lead { max-width:520px; margin:0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(25px, 3vw, 38px); line-height:1.12; letter-spacing:-.025em; }
-  .video-section { grid-template-columns:minmax(220px, .55fr) minmax(0, 1.45fr); gap:clamp(34px, 6vw, 76px); align-items:center; padding-top:20px; padding-bottom:clamp(84px, 10vw, 128px); }
-  .video-intro { align-self:center; }
-  .video-intro .eyebrow { max-width:220px; font-size:13px; line-height:1.35; }
-  .video-lead { max-width:250px; margin:16px 0 0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(20px, 2vw, 27px); line-height:1.15; }
-  .video-frame { width:100%; max-width:none; }
-  .live-section { padding-bottom:clamp(90px, 9vw, 128px); }
-  .about, .concert { padding-bottom:clamp(96px, 10vw, 140px); }
-  .contact { padding-bottom:96px; }
-}
-
-@media (min-width:601px) and (max-width:979px) {
-  .hero.has-upcoming-event { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; padding-top:32px; padding-bottom:64px; }
-  .hero.has-upcoming-event .project-intro,
-  .hero.has-upcoming-event > .eyebrow,
-  .hero.has-upcoming-event .hero-title,
-  .hero.has-upcoming-event .hero-foot,
-  .hero.has-upcoming-event .hero-concert-cta,
-  .hero.has-upcoming-event .hero-photo { grid-column:auto; grid-row:auto; }
-  .hero.has-upcoming-event .hero-title { order:0; justify-self:start; align-self:start; width:min(100%, 360px); margin:0; text-align:left; }
-  .hero.has-upcoming-event .hero-title img { width:100%; height:auto; }
-  .hero.has-upcoming-event > .eyebrow { order:1; }
-  .hero.has-upcoming-event .project-intro { order:2; display:grid; grid-template-columns:minmax(0,1fr) minmax(180px,.5fr); gap:24px; max-width:920px; margin:0; font-size:16px; }
-  .hero.has-upcoming-event .project-intro p + p { margin:0; }
-  .hero.has-upcoming-event .hero-foot { display:none; }
-  .hero.has-upcoming-event .hero-concert-cta { order:3; align-self:stretch; width:100%; margin:12px 0 0; padding-top:10px; border-top:1px solid var(--line); grid-template-columns:minmax(0,1fr) auto; transform:none; }
-  .hero-photo { order:4; width:min(100%, 720px); margin:28px auto 0; }
-  .hero-photo img { display:block; width:100%; height:auto; }
-  .portrait { display:grid; grid-template-columns:1fr; gap:20px; padding:0 0 72px; }
-  .portrait-intro { display:block; margin:0; padding:0; }
-  .portrait-lead { max-width:560px; margin:0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(24px,4vw,34px); line-height:1.12; }
-  .video-section { grid-template-columns:minmax(0,1fr); gap:22px; padding-bottom:80px; }
-  .video-intro { display:flex; gap:30px; align-items:baseline; }
-  .video-intro .eyebrow, .video-lead { max-width:50%; }
-  .video-lead { margin:0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:22px; line-height:1.15; }
-  .video-frame { width:min(100%, 900px); }
-}
-
-@media (max-width:600px) {
-  .hero.has-upcoming-event { padding-bottom:40px; }
-  .hero-photo { order:4; width:100%; margin:22px 0 0; }
-  .hero-photo img { display:block; width:100%; height:auto; }
-  .portrait { display:flex; flex-direction:column; gap:16px; padding:0 0 72px; }
-  .portrait-intro { display:block; order:0; margin:0; }
-  .portrait-lead { max-width:320px; margin:0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:24px; line-height:1.12; }
-  .video-section { padding-bottom:76px; }
-  .video-intro { display:block; }
-  .video-intro .eyebrow { max-width:260px; }
-  .video-lead { max-width:300px; margin:10px 0 0; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:21px; line-height:1.15; }
 }
