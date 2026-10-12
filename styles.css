@@ -10,9 +10,9 @@ a:hover { color:var(--accent); }
 .wordmark { display:block; width:84px; line-height:0; }
 .wordmark img { display:block; width:100%; height:auto; }
 nav { display:flex; gap:28px; }
-.hero { min-height:auto; padding-top:0; padding-bottom:clamp(72px, 10vw, 150px); display:flex; flex-direction:column; justify-content:flex-start; }
-.hero-title { display:flex; flex-direction:column; align-items:flex-start; gap:.025em; margin:clamp(30px, 5vw, 64px) 0 0; width:max-content; max-width:100%; align-self:flex-start; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(112px, 16vw, 210px); font-weight:800; line-height:.82; letter-spacing:-.035em; }
-.hero-title span { display:block; white-space:nowrap; }
+.hero { min-height:auto; padding:16px 0 clamp(72px, 10vw, 150px); display:flex; flex-direction:column; justify-content:flex-start; }
+.hero-title { display:flex; flex-direction:column; align-items:flex-start; gap:.025em; margin:clamp(30px, 5vw, 64px) 0 0; width:max-content; max-width:100%; align-self:flex-start; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(112px, 18vw, 236px); font-weight:800; line-height:.68; letter-spacing:-.055em; }
+.hero-title span { display:block; white-space:nowrap; padding-right:.08em; }
 .eyebrow { margin:0; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
 .wordmark-large { margin:clamp(42px, 8vw, 94px) 0 0; width:min(78vw, 930px); line-height:0; }
 .wordmark-large img { display:block; width:100%; height:auto; }
@@ -23,13 +23,13 @@ nav { display:flex; gap:28px; }
 .hero-concert-cta p { margin:0; color:var(--muted); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(18px, 2vw, 23px); font-weight:700; letter-spacing:.06em; }
 .text-link { display:inline-flex; gap:10px; align-items:center; border-bottom:1px solid currentColor; padding-bottom:5px; font-size:13px; }
 .text-link span { color:var(--accent); }
-.portrait { position:relative; padding-bottom:clamp(120px, 17vw, 240px); }
-.portrait-intro { display:none; }
-.portrait-frame { width:min(78%, 960px); margin-left:auto; }
-.portrait-frame img { display:block; width:100%; aspect-ratio:1; object-fit:cover; object-position:center; }
-.portrait-caption { position:absolute; left:0; bottom:clamp(150px, 19vw, 280px); margin:0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(25px, 3vw, 44px); font-weight:700; line-height:.9; letter-spacing:.02em; }
-.video-section { padding-bottom:clamp(110px, 13vw, 170px); }
-.video-frame { width:min(100%, 780px); aspect-ratio:16 / 9; }
+.portrait { position:relative; display:grid; grid-template-columns:minmax(0, 32fr) minmax(0, 68fr); align-items:center; gap:clamp(24px, 2.2vw, 32px); padding-block:clamp(32px, 3vw, 44px) clamp(64px, 7vw, 100px); }
+.portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:clamp(20px, 3vw, 32px); }
+.portrait-frame { width:100%; max-width:900px; margin:0; justify-self:end; }
+.portrait-frame img { display:block; width:100%; height:auto; margin:0; object-fit:contain; object-position:center; }
+.portrait-caption { position:static; margin:0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(30px, 3.4vw, 46px); font-weight:700; line-height:.94; letter-spacing:.02em; }
+.video-section { grid-template-columns:minmax(160px, .7fr) minmax(0, 1.7fr); gap:clamp(24px, 4vw, 56px); align-items:start; padding-block:clamp(24px, 3vw, 40px) clamp(48px, 6vw, 76px); }
+.video-frame { width:min(100%, 880px); aspect-ratio:16 / 9; }
 .video-frame iframe { display:block; width:100%; height:100%; border:0; }
 .live-section { padding-bottom:clamp(120px, 10vw, 156px); }
 .live-header { margin-bottom:clamp(30px, 5vw, 64px); }
@@ -58,10 +58,10 @@ nav { display:flex; gap:28px; }
 .concert-time { font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(28px, 3vw, 42px); font-weight:700; margin-top:12px !important; }
 .venue { margin-top:30px !important; font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(22px, 2.6vw, 38px); font-weight:700; line-height:.95; }
 .ticket-price { color:var(--muted); margin-top:28px !important; }
-.project-intro { display:grid; grid-template-columns:minmax(0, 1.35fr) minmax(250px, .9fr); gap:clamp(30px, 6vw, 88px); max-width:1020px; margin:0 0 32px; color:var(--muted); font-size:17px; line-height:1.5; }
+.project-intro { display:grid; grid-template-columns:minmax(0, 1.35fr) minmax(250px, .9fr); align-items:start; gap:clamp(30px, 6vw, 88px); max-width:1020px; margin:0 0 32px; color:var(--muted); font-size:17px; line-height:1.5; }
 .project-intro p { margin:0; }
 .intro-label { display:block; margin-bottom:8px; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-weight:700; letter-spacing:.12em; }
-.intro-names { color:var(--ink) !important; font-family:"Playfair Display", Georgia, serif; }
+.intro-names { color:var(--ink) !important; font-family:"Playfair Display", Georgia, serif; font-size:clamp(23px, 1.7vw, 24px); line-height:1.55; align-self:start; }
 .ticket-note { color:var(--muted); margin-top:24px !important; font-size:14px; }
 .ticket-link { display:inline-flex; gap:14px; align-items:center; margin-top:28px; padding:15px 18px 13px; background:var(--accent); color:var(--light); font-family:"Barlow Condensed", Impact, sans-serif; font-size:20px; font-weight:700; letter-spacing:.04em; }
 .ticket-link span { font-family:"DM Sans",sans-serif; }
@@ -76,17 +76,18 @@ nav { display:flex; gap:28px; }
 .home-footer > div { display:flex; flex-wrap:wrap; gap:20px; }
 @media (min-width:601px) {
   .shell { width:min(calc(100% - 112px), 1280px); }
-  .portrait { padding-bottom:120px; display:grid; grid-template-columns:30% 70%; align-items:center; }
-  .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; align-self:start; margin-top:clamp(150px, 12vw, 190px); padding-right:48px; }
+  .portrait { grid-template-columns:minmax(0, 32fr) minmax(0, 68fr); gap:clamp(24px, 2.2vw, 32px); padding-block:clamp(32px, 3vw, 44px) clamp(64px, 7vw, 100px); }
+  .portrait-intro { align-self:start; margin-top:clamp(100px, 15vw, 190px); padding-right:clamp(12px, 2vw, 32px); }
   .portrait-lead { margin:0; max-width:250px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:clamp(22px, 2vw, 30px); line-height:1.08; letter-spacing:-.025em; }
   .portrait-intro .text-link { font-size:14px; border-bottom-width:2px; }
-  .portrait-frame { grid-column:2; grid-row:1; width:88%; max-width:760px; margin-left:0; }
-  .portrait-caption { position:static; grid-column:2; grid-row:2; margin:16px 0 0; }
-  .hero { padding-top:0; padding-bottom:100px; }
+  .portrait-frame { grid-column:2; grid-row:1; width:100%; max-width:900px; margin:0; justify-self:end; }
+  .portrait-caption { grid-column:auto; grid-row:auto; margin:0; }
+  .hero { padding-top:0; padding-bottom:clamp(56px, 6vw, 80px); }
   .project-intro { margin-bottom:20px; }
-  .hero-title { margin-top:30px; font-size:clamp(120px, 15vw, 190px); }
-  .hero-foot { margin-top:32px; }
+  .hero-title { margin-top:30px; font-size:clamp(130px, 18vw, 220px); }
+  .hero-foot { margin-top:50px; }
   .hero-concert-cta { margin-top:22px; padding-top:12px; }
+  .video-section { grid-template-columns:minmax(130px, .7fr) minmax(0, 1.7fr); gap:24px; padding-block:40px 56px; }
   .section-grid { grid-template-columns:30% 70%; gap:0; }
   .about { padding-bottom:128px; }
   .statement { max-width:620px; }
@@ -99,7 +100,7 @@ nav { display:flex; gap:28px; }
   .ticket-link { margin-top:22px; }
   .contact { padding-bottom:112px; }
 }
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:16px; } nav { gap:16px; } .hero { min-height:auto; padding-top:0; padding-bottom:38px; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-label { display:inline; margin:0 7px 0 0; } .intro-en { display:none; } .hero-title { margin-top:24px; width:max-content; max-width:100%; align-self:center; font-size:clamp(62px, 20vw, 112px); } .hero-foot { margin-top:30px; flex-direction:column; align-items:flex-start; gap:14px; } .hero-concert-cta { align-items:stretch; flex-direction:column; gap:8px; margin-top:18px; padding-top:12px; } .hero-concert-cta p { font-size:18px; line-height:1.2; } .ticket-link-hero { width:100%; min-height:52px; } .hero-foot p { max-width:290px; } .portrait { padding-bottom:125px; display:flex; flex-direction:column; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:24px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; order:1; } .portrait-caption { position:static; margin-top:18px; font-size:30px; order:3; } .video-section { padding-bottom:110px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .concert-date { font-size:43px; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:16px; } nav { gap:16px; } .hero { min-height:auto; padding-top:16px; padding-bottom:38px; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-names { font-size:clamp(18px, 5vw, 20px); line-height:1.45; } .intro-label { display:inline; margin:0 7px 0 0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-weight:700; letter-spacing:.12em; } .intro-en { display:none; } .hero-title { margin-top:24px; width:max-content; max-width:100%; align-self:center; font-size:clamp(82px, 20vw, 112px); } .hero-foot { margin-top:48px; flex-direction:column; align-items:flex-start; gap:14px; } .hero-concert-cta { align-items:stretch; flex-direction:column; gap:8px; margin-top:18px; padding-top:12px; } .hero-concert-cta p { font-size:18px; line-height:1.2; } .ticket-link-hero { width:100%; min-height:52px; } .hero-foot p { max-width:290px; } .portrait { display:flex; flex-direction:column; gap:0; padding:16px 0 48px; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:18px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; max-width:none; order:1; } .portrait-frame img { width:100%; height:auto; max-height:none; margin-inline:0; } .portrait-caption { position:static; margin-top:2px; font-size:clamp(29px, 8vw, 34px); order:3; } .video-section { grid-template-columns:1fr; gap:20px; padding-block:40px 48px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } .hero-concert-cta p { font-size:17px; } }
 
@@ -125,8 +126,8 @@ nav { display:flex; gap:28px; }
   .project-intro { grid-column:1 / -1; grid-row:1; width:100%; margin-bottom:20px; }
   .hero > .eyebrow { grid-column:1; grid-row:2; margin-top:10px; }
   .hero-title { grid-column:1; grid-row:3; margin-top:24px; }
-  .hero-foot { grid-column:1; grid-row:4; margin-top:32px; }
-  .hero-concert-cta { grid-column:2; grid-row:3; grid-template-columns:minmax(0, 1fr); align-self:start; width:calc(100% + clamp(90px, 10vw, 150px)); margin-top:24px; margin-left:clamp(-150px, -10vw, -90px); padding-top:16px; }
+  .hero-foot { grid-column:1; grid-row:4; margin-top:50px; }
+  .hero-concert-cta { grid-column:2; grid-row:3; grid-template-columns:minmax(0, 1fr); align-self:start; width:calc(100% + clamp(140px, 15vw, 210px)); margin-top:24px; margin-left:clamp(-210px, -15vw, -140px); padding-top:16px; }
   .hero-concert-cta .ticket-link-hero { grid-column:1; grid-row:auto; justify-self:start; width:auto; min-width:220px; }
 }
 @media (max-width:600px) { nav { gap:12px; } .language-switch { gap:5px; margin-left:0; } }
@@ -138,4 +139,27 @@ nav { display:flex; gap:28px; }
 @media (max-width:340px) {
   .site-header { column-gap:8px; }
   .site-header nav { font-size:11px; }
+}
+
+/* Refined editorial hierarchy */
+.booking-cta { align-items:start; padding-block:clamp(36px, 5vw, 64px) clamp(56px, 7vw, 92px); }
+.booking-statement { max-width:660px; margin:0; font-family:"Playfair Display", Georgia, serif; font-size:clamp(26px, 3vw, 40px); line-height:1.12; letter-spacing:-.025em; }
+.booking-link { margin-top:22px; }
+@media (min-width:1100px) {
+  .hero { padding-top:16px; padding-bottom:clamp(36px, 4vw, 54px); }
+  .hero-title { margin-top:24px; width:max-content; max-width:100%; font-size:clamp(126px, 15vw, 220px); }
+  .hero-concert-cta { margin-top:24px; }
+  .intro-names { white-space:nowrap; }
+}
+@media (min-width:601px) and (max-width:1099px) {
+  .hero { padding-top:16px; }
+  .hero-title { font-size:clamp(130px, 17vw, 190px); }
+  .shell { width:min(calc(100% - 64px), 1280px); }
+  .portrait { grid-template-columns:minmax(0, 30fr) minmax(0, 70fr); gap:24px; }
+  .intro-names { font-size:clamp(20px, 2.3vw, 23px); }
+}
+@media (max-width:600px) {
+  .booking-cta { grid-template-columns:1fr; gap:18px; padding-block:32px 56px; }
+  .booking-statement { font-size:28px; }
+  .booking-link { width:100%; justify-content:center; }
 }

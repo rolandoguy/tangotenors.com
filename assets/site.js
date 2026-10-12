@@ -32,14 +32,6 @@
   const esc = value => String(value).replace(/[&<>"']/g, character => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
   })[character]);
-  const trackOutboundClick = (eventName, destination) => {
-    const params = new URLSearchParams(window.location.search);
-    const referrerHost = (() => { try { return new URL(document.referrer).hostname; } catch { return ""; } })();
-    const source = params.get("utm_source") || (/(^|\.)instagram\.com$/i.test(referrerHost) ? "instagram" : "direct_or_other");
-    const payload = { event_category: "outbound", destination, traffic_source: source, device: matchMedia("(max-width: 600px)").matches ? "mobile" : "desktop" };
-    if (typeof window.gtag === "function") window.gtag("event", eventName, payload);
-    else if (Array.isArray(window.dataLayer)) window.dataLayer.push({ event: eventName, ...payload });
-  };
   const addressSchema = event => ({
     "@type": "PostalAddress",
     ...(event.address.length > 1 ? {
@@ -58,7 +50,7 @@
         <p class="concert-time">${esc(event.time)}</p>
         <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${event.address.map(esc).join("<br />").toLocaleUpperCase(language)}</p>
         ${event.price ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
-        ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : ""}
+        ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : ""}
       </article>`).join("");
   }
 
@@ -95,6 +87,7 @@
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.dataset.outbound = "ticket";
+        link.dataset.concertId = nextEvent.id;
         link.innerHTML = `${esc(nextEvent.ticketLabel[language])} <span aria-hidden="true">↗</span>`;
       } else {
         link.href = `#${nextEvent.id}`;
@@ -104,10 +97,6 @@
     }
   }
 
-  document.addEventListener("click", event => {
-    const link = event.target.closest("a[data-outbound]");
-    if (link) trackOutboundClick(link.dataset.outbound === "ticket" ? "ticket_click" : "maps_click", link.href);
-  });
 
   const musicGroup = {
     "@context": "https://schema.org",
