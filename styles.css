@@ -127,7 +127,7 @@ nav { display:flex; gap:28px; }
   .hero > .eyebrow { grid-column:1; grid-row:2; margin-top:10px; }
   .hero-title { grid-column:1; grid-row:3; margin-top:24px; }
   .hero-foot { grid-column:1; grid-row:4; margin-top:50px; }
-  .hero-concert-cta { grid-column:2; grid-row:3; grid-template-columns:minmax(0, 1fr); align-self:start; width:calc(100% + clamp(140px, 15vw, 210px)); margin-top:24px; margin-left:clamp(-210px, -15vw, -140px); padding-top:16px; }
+  .hero-concert-cta { grid-column:1 / -1; grid-row:3; grid-template-columns:minmax(0, 1fr); align-self:start; width:calc(100% - min(645px, 62.7%)); margin-top:24px; margin-left:min(645px, 62.7%); padding-top:16px; }
   .hero-concert-cta .ticket-link-hero { grid-column:1; grid-row:auto; justify-self:start; width:auto; min-width:220px; }
 }
 @media (max-width:600px) { nav { gap:12px; } .language-switch { gap:5px; margin-left:0; } }
