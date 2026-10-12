@@ -67,7 +67,7 @@
     if (cta) {
       cta.closest(".hero")?.classList.add("has-upcoming-event");
       const date = cta.querySelector(".hero-concert-date");
-      const link = cta.querySelector("a");
+      const link = cta.querySelector(".ticket-link-hero");
       date.textContent = `${nextEvent.weekdayLabel?.[language] ? `${nextEvent.weekdayLabel[language]}, ` : ""}${nextEvent.dateLabel[language]}`;
       const place = cta.querySelector(".hero-concert-place");
       place.textContent = [
