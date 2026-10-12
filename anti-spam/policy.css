@@ -1,0 +1,8 @@
+.policy-section { min-height:calc(100svh - 110px); padding-top:clamp(64px,9vw,126px); }
+.policy-copy { max-width:780px; }
+.policy-copy h1 { margin-top:24px; }
+.policy-copy h2 { margin:clamp(36px,5vw,60px) 0 12px; color:var(--accent); font-family:"Barlow Condensed",Impact,sans-serif; font-size:clamp(22px,2.4vw,30px); font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.policy-copy p { max-width:720px; color:var(--muted); font-size:clamp(15px,1.4vw,17px); line-height:1.7; }
+.policy-copy a { color:var(--ink); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; overflow-wrap:anywhere; }
+.policy-copy a:hover { color:var(--accent); }
+.policy-updated { margin-top:clamp(36px,5vw,60px); border-top:1px solid var(--line); padding-top:18px; font-size:13px !important; }
