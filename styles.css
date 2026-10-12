@@ -11,7 +11,7 @@ a:hover { color:var(--accent); }
 .wordmark img { display:block; width:100%; height:auto; }
 nav { display:flex; gap:28px; }
 .hero { min-height:auto; padding-top:0; padding-bottom:clamp(110px, 15vw, 210px); display:flex; flex-direction:column; justify-content:flex-start; }
-.hero-title { margin:clamp(36px, 6vw, 80px) 0 0; width:min(100%, 550px); line-height:0; }
+.hero-title { margin:clamp(36px, 6vw, 80px) 0 0; width:min(100%, 550px); align-self:flex-start; line-height:0; }
 .hero-title img { display:block; width:100%; height:auto; }
 .eyebrow { margin:0; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
 .wordmark-large { margin:clamp(42px, 8vw, 94px) 0 0; width:min(78vw, 930px); line-height:0; }
@@ -84,7 +84,7 @@ nav { display:flex; gap:28px; }
   .portrait-caption { position:static; grid-column:2; grid-row:2; margin:16px 0 0; }
   .hero { padding-top:0; padding-bottom:100px; }
   .project-intro { margin-bottom:20px; }
-  .hero-title { margin-top:28px; width:min(100%, 900px); }
+  .hero-title { margin-top:28px; width:min(100%, 550px); }
   .hero-foot { margin-top:32px; }
   .hero-concert-cta { margin-top:22px; padding-top:12px; }
   .section-grid { grid-template-columns:30% 70%; gap:0; }
