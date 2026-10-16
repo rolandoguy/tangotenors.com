@@ -11,8 +11,8 @@ a:hover { color:var(--accent); }
 .wordmark img { display:block; width:100%; height:auto; }
 nav { display:flex; gap:28px; }
 .hero { min-height:auto; padding:16px 0 clamp(72px, 10vw, 150px); display:flex; flex-direction:column; justify-content:flex-start; }
-.hero-title { display:flex; flex-direction:column; align-items:flex-start; gap:0; margin:clamp(30px, 5vw, 64px) 0 0; width:max-content; max-width:100%; align-self:flex-start; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(112px, 18vw, 236px); font-weight:800; line-height:.9; letter-spacing:.06em; }
-.hero-title span { display:block; white-space:nowrap; }
+.hero-title { display:flex; flex-direction:column; align-items:flex-start; gap:.035em; margin:clamp(30px, 5vw, 64px) 0 0; width:max-content; max-width:100%; align-self:flex-start; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-size:clamp(112px, 18vw, 236px); font-weight:800; line-height:.75; letter-spacing:-.035em; }
+.hero-title span { display:block; white-space:nowrap; padding-right:.08em; }
 .eyebrow { margin:0; color:var(--muted); font-size:11px; letter-spacing:.12em; text-transform:uppercase; }
 .wordmark-large { margin:clamp(42px, 8vw, 94px) 0 0; width:min(78vw, 930px); line-height:0; }
 .wordmark-large img { display:block; width:100%; height:auto; }
@@ -84,7 +84,7 @@ nav { display:flex; gap:28px; }
   .portrait-caption { grid-column:auto; grid-row:auto; margin:0; }
   .hero { padding-top:0; padding-bottom:clamp(56px, 6vw, 80px); }
   .project-intro { margin-bottom:20px; }
-  .hero-title { margin-top:30px; font-size:clamp(130px, 14vw, 190px); }
+  .hero-title { margin-top:30px; font-size:clamp(130px, 18vw, 220px); }
   .hero-foot { margin-top:50px; }
   .hero-concert-cta { margin-top:22px; padding-top:12px; }
   .video-section { grid-template-columns:minmax(130px, .7fr) minmax(0, 1.7fr); gap:24px; padding-block:40px 56px; }
@@ -100,7 +100,7 @@ nav { display:flex; gap:28px; }
   .ticket-link { margin-top:22px; }
   .contact { padding-bottom:112px; }
 }
-@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:16px; } nav { gap:16px; } .hero { min-height:auto; padding-top:16px; padding-bottom:38px; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-names { font-size:clamp(18px, 5vw, 20px); line-height:1.45; } .intro-label { display:inline; margin:0 7px 0 0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-weight:700; letter-spacing:.12em; } .intro-en { display:none; } .hero-title { margin-top:24px; width:max-content; max-width:100%; align-self:flex-start; font-size:clamp(72px, 28.5vw, 160px); } .hero-foot { margin-top:48px; flex-direction:column; align-items:flex-start; gap:14px; } .hero-concert-cta { align-items:stretch; flex-direction:column; gap:8px; margin-top:18px; padding-top:12px; } .hero-concert-cta p { font-size:18px; line-height:1.2; } .ticket-link-hero { width:100%; min-height:52px; } .hero-foot p { max-width:290px; } .portrait { display:flex; flex-direction:column; gap:0; padding:16px 0 48px; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:18px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; max-width:none; order:1; } .portrait-frame img { width:100%; height:auto; max-height:none; margin-inline:0; } .portrait-caption { position:static; margin-top:2px; font-size:clamp(29px, 8vw, 34px); order:3; } .video-section { grid-template-columns:1fr; gap:20px; padding-block:40px 48px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
+@media (max-width:600px) { .shell { width:min(100% - 36px, 1240px); } .site-header { padding-top:16px; } nav { gap:16px; } .hero { min-height:auto; padding-top:16px; padding-bottom:38px; } .project-intro { grid-template-columns:1fr; gap:10px; margin-bottom:14px; font-size:15px; line-height:1.35; } .intro-names { font-size:clamp(18px, 5vw, 20px); line-height:1.45; } .intro-label { display:inline; margin:0 7px 0 0; color:var(--accent); font-family:"Barlow Condensed", Impact, sans-serif; font-weight:700; letter-spacing:.12em; } .intro-en { display:none; } .hero-title { margin-top:24px; width:max-content; max-width:100%; align-self:flex-start; font-size:clamp(82px, 20vw, 112px); } .hero-foot { margin-top:48px; flex-direction:column; align-items:flex-start; gap:14px; } .hero-concert-cta { align-items:stretch; flex-direction:column; gap:8px; margin-top:18px; padding-top:12px; } .hero-concert-cta p { font-size:18px; line-height:1.2; } .ticket-link-hero { width:100%; min-height:52px; } .hero-foot p { max-width:290px; } .portrait { display:flex; flex-direction:column; gap:0; padding:16px 0 48px; } .portrait-intro { display:flex; flex-direction:column; align-items:flex-start; gap:18px; margin-top:24px; order:2; } .portrait-lead { margin:0; max-width:270px; color:var(--muted); font-family:"Playfair Display", Georgia, serif; font-size:27px; line-height:1.08; } .portrait-frame { width:100%; max-width:none; order:1; } .portrait-frame img { width:100%; height:auto; max-height:none; margin-inline:0; } .portrait-caption { position:static; margin-top:2px; font-size:clamp(29px, 8vw, 34px); order:3; } .video-section { grid-template-columns:1fr; gap:20px; padding-block:40px 48px; } .section-grid { grid-template-columns:1fr; gap:30px; } .live-section { padding-bottom:110px; } .live-header { margin-bottom:30px; } .live-feature, .live-grid-pair, .live-grid-stage, .live-grid-stage figure:first-child, .live-grid-stage figure:last-child, .live-grid-closing figure:first-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { width:100%; margin-left:0; margin-right:0; } .live-section .live-feature { width:100%; margin-bottom:28px; } .live-grid, .live-grid-pair { display:grid; grid-template-columns:1fr; gap:28px; } .live-grid-stage, .live-grid-closing { display:block; } .live-grid-stage figure:last-child, .live-grid-closing figure:nth-child(2), .live-grid-closing figure:last-child { margin-top:28px; } .photo-credit { margin-top:20px; } .about { padding-bottom:120px; } .statement { font-size:31px; } .names { margin-top:36px; } .concert { padding-bottom:110px; } .concert-list { max-width:none; } .ticket-link { margin-top:24px; } .contact { padding-bottom:100px; } .contact-links { font-size:30px; } }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
 @media (max-width:340px) { .shell { width:calc(100% - 28px); } .hero-concert-cta p { font-size:17px; } }
 
@@ -147,13 +147,13 @@ nav { display:flex; gap:28px; }
 .booking-link { margin-top:22px; }
 @media (min-width:1100px) {
   .hero { padding-top:16px; padding-bottom:clamp(36px, 4vw, 54px); }
-  .hero-title { margin-top:24px; width:max-content; max-width:100%; font-size:clamp(112px, 14vw, 190px); }
+  .hero-title { margin-top:24px; width:max-content; max-width:100%; font-size:clamp(126px, 15vw, 220px); }
   .hero-concert-cta { margin-top:24px; }
   .intro-names { white-space:nowrap; }
 }
 @media (min-width:601px) and (max-width:1099px) {
   .hero { padding-top:16px; }
-  .hero-title { font-size:clamp(112px, 25vw, 170px); }
+  .hero-title { font-size:clamp(130px, 17vw, 190px); }
   .shell { width:min(calc(100% - 64px), 1280px); }
   .portrait { grid-template-columns:minmax(0, 30fr) minmax(0, 70fr); gap:24px; }
   .intro-names { font-size:clamp(20px, 2.3vw, 23px); }
