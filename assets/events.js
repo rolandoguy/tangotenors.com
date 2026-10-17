@@ -42,8 +42,8 @@ window.TANGO_EVENTS = [
     dateLabel: { de: "6. DEZEMBER 2026", en: "6 DECEMBER 2026" },
     startDate: "2026-12-06T20:00:00+01:00",
     time: "20:00",
-    ticketUrl: null,
-    ticketLabel: null,
+    ticketUrl: "https://www.yesticket.org/event/en/tango-tenors-06-12-26/",
+    ticketLabel: { de: "TICKETS RESERVIEREN", en: "BOOK TICKETS" },
     price: null,
     offers: null
   }
