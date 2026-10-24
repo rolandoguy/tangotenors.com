@@ -1,7 +1,7 @@
 (() => {
   const copy = {
-    de: { archive: "KONZERTARCHIV", upcoming: "KOMMENDE KONZERTE", menuOpen: "Menü öffnen", menuClose: "Menü schließen", details: "KONZERTDETAILS ANSEHEN", timeSuffix: "UHR", map: "ANFAHRT & VERANSTALTUNGSORT", groupName: "Tango Tenors", members: ["Rolando Guy", "Gastón Efficace"], historical: "VERGANGENE VERANSTALTUNG", noDate: "Derzeit sind keine öffentlichen Konzerte geplant.", pressNext: "NÄCHSTER ÖFFENTLICHER TERMIN", pressTickets: "TICKETS & KONZERTINFO" },
-    en: { archive: "CONCERT ARCHIVE", upcoming: "UPCOMING CONCERTS", menuOpen: "Open menu", menuClose: "Close menu", details: "VIEW CONCERT DETAILS", timeSuffix: "", map: "DIRECTIONS & VENUE", groupName: "Tango Tenors", members: ["Rolando Guy", "Gastón Efficace"], historical: "PAST EVENT", noDate: "No public concerts are currently scheduled.", pressNext: "NEXT PUBLIC PERFORMANCE", pressTickets: "TICKETS & CONCERT INFO" }
+    de: { archive: "KONZERTARCHIV", upcoming: "NÄCHSTE KONZERTE", menuOpen: "Menü öffnen", menuClose: "Menü schließen", details: "KONZERTDETAILS ANSEHEN", timeSuffix: "UHR", map: "ANFAHRT & VERANSTALTUNGSORT", groupName: "Tango Tenors", members: ["Rolando Guy", "Gastón Efficace"], noDate: "Derzeit sind keine öffentlichen Konzerte geplant.", pressNext: "NÄCHSTER ÖFFENTLICHER TERMIN", pressTickets: "TICKETS & KONZERTINFO" },
+    en: { archive: "CONCERT ARCHIVE", upcoming: "UPCOMING CONCERTS", menuOpen: "Open menu", menuClose: "Close menu", details: "VIEW CONCERT DETAILS", timeSuffix: "", map: "DIRECTIONS & VENUE", groupName: "Tango Tenors", members: ["Rolando Guy", "Gastón Efficace"], noDate: "No public concerts are currently scheduled.", pressNext: "NEXT PUBLIC PERFORMANCE", pressTickets: "TICKETS & CONCERT INFO" }
   };
   const getLanguage = () => document.documentElement.lang === "de" ? "de" : "en";
   let language = getLanguage();
@@ -30,12 +30,14 @@
   const renderEvents = (target, items, heading, archived = false) => {
     if (!target) return;
     target.innerHTML = items.length ? `${heading ? `<h2 class="concert-subtitle">${esc(heading)}</h2>` : ""}${items.map(event => `
-      <article class="concert-detail" id="${esc(event.id)}">
+      <article class="concert-detail${archived ? " archive-entry" : ""}" id="${esc(event.id)}">
         <p class="concert-date">${esc(formatDate(event))}</p>
-        ${formatTime(event) ? `<p class="concert-time">${esc(formatTime(event))}</p>` : ""}
-        <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${(event.address || []).map(esc).join("<br />").toLocaleUpperCase(language)}</p>
-        ${event.price?.[language] ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
-        ${archived && event.ticketUrl ? `<a class="historical-link" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(text.historical)} <span aria-hidden="true">↗</span></a>` : !archived && event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span></a>` : ""}
+        ${archived
+          ? `<p class="venue">${esc(event.venue).toLocaleUpperCase(language)}</p>${event.city ? `<p class="archive-city">${esc(event.city).toLocaleUpperCase(language)}</p>` : ""}`
+          : `${formatTime(event) ? `<p class="concert-time">${esc(formatTime(event))}</p>` : ""}
+            <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${(event.address || []).map(esc).join("<br />").toLocaleUpperCase(language)}</p>
+            ${event.price?.[language] ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
+            ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span></a>` : ""}`}
       </article>`).join("")}` : "";
   };
   const upcomingList = document.getElementById("upcoming-concert-list");
@@ -177,21 +179,71 @@
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.getElementById("primary-navigation");
   if (header && toggle && nav) {
+    const isMobileNavigation = () => window.matchMedia("(max-width: 760px)").matches;
     const setMenu = open => {
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? copy[language].menuClose : copy[language].menuOpen);
-      header.classList.toggle("menu-open", open);
-      document.body.classList.toggle("menu-is-open", open);
+      const expanded = open && isMobileNavigation();
+      const collapsed = !expanded && isMobileNavigation();
+      toggle.setAttribute("aria-expanded", String(expanded));
+      toggle.setAttribute("aria-label", expanded ? copy[language].menuClose : copy[language].menuOpen);
+      nav.inert = collapsed;
+      nav.setAttribute("aria-hidden", String(collapsed));
+      header.classList.toggle("menu-open", expanded);
     };
-    toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
-    nav.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => setMenu(false)));
+    setMenu(false);
+    const languageLinks = nav.querySelectorAll(".language-switch a");
+    let frozenLanguageLinks = false;
+    nav.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => {
+      const sectionHash = link.getAttribute("href");
+      languageLinks.forEach(languageLink => { languageLink.href = `${languageLink.origin}${languageLink.pathname}${sectionHash}`; });
+      frozenLanguageLinks = false;
+      setMenu(false);
+    }));
     document.addEventListener("keydown", event => { if (event.key === "Escape") { setMenu(false); toggle.focus(); } });
     document.addEventListener("click", event => { if (!header.contains(event.target)) setMenu(false); });
-    const languageLinks = nav.querySelectorAll(".language-switch a");
-    const syncLanguageAnchors = () => languageLinks.forEach(link => { link.href = `${link.origin}${link.pathname}${window.location.hash}`; });
-    syncLanguageAnchors();
-    window.addEventListener("hashchange", syncLanguageAnchors);
     const sections = [...nav.querySelectorAll('a[href^="#"]')].map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    const sectionAtViewport = () => {
+      const threshold = header.getBoundingClientRect().height + 24;
+      return sections.filter(section => section.getBoundingClientRect().top <= threshold).pop() || null;
+    };
+    const syncLanguageAnchors = (preferHash = false) => {
+      if (frozenLanguageLinks) return;
+      const hashSection = preferHash ? sections.find(section => section.id === window.location.hash.slice(1)) : null;
+      const visibleSection = hashSection || sectionAtViewport();
+      const sectionHash = visibleSection ? `#${visibleSection.id}` : "";
+      languageLinks.forEach(link => { link.href = `${link.origin}${link.pathname}${sectionHash}`; });
+    };
+    const freezeLanguageTargets = () => {
+      if (toggle.getAttribute("aria-expanded") === "true") return;
+      const activeSectionId = nav.querySelector('a[aria-current="location"]')?.getAttribute("href")?.slice(1);
+      const section = sections.find(item => item.id === window.location.hash.slice(1))
+        || sections.find(item => item.id === activeSectionId)
+        || sectionAtViewport()
+        || sections.find(item => item.id === languageLinks[0]?.hash.slice(1));
+      const sectionHash = section ? `#${section.id}` : "";
+      languageLinks.forEach(link => { link.href = `${link.origin}${link.pathname}${sectionHash}`; });
+      frozenLanguageLinks = true;
+    };
+    toggle.addEventListener("pointerdown", freezeLanguageTargets);
+    toggle.addEventListener("focus", freezeLanguageTargets);
+    toggle.addEventListener("click", () => {
+      const opening = toggle.getAttribute("aria-expanded") !== "true";
+      frozenLanguageLinks = opening;
+      setMenu(opening);
+      if (!opening) syncLanguageAnchors();
+    });
+    let mobileNavigation = isMobileNavigation();
+    window.addEventListener("resize", () => {
+      const nextMobileNavigation = isMobileNavigation();
+      if (nextMobileNavigation !== mobileNavigation) {
+        mobileNavigation = nextMobileNavigation;
+        frozenLanguageLinks = false;
+        setMenu(false);
+        syncLanguageAnchors();
+      }
+    });
+    syncLanguageAnchors(true);
+    window.addEventListener("hashchange", () => syncLanguageAnchors(true));
+    window.addEventListener("scroll", syncLanguageAnchors, { passive: true });
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(entries => entries.forEach(entry => {
         const link = nav.querySelector(`a[href="#${entry.target.id}"]`);

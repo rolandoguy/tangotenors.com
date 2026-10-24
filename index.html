@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles.css?v=7" />
+    <link rel="stylesheet" href="/styles.css?v=10" />
     <script defer src="https://cloud.umami.is/script.js" data-website-id="e11b9734-0ce4-437f-9506-48ca1f1b64d3"></script>
     <script defer src="/assets/analytics.js?v=1"></script>
 
@@ -33,10 +33,11 @@
       <a class="wordmark" href="/" aria-label="Tango Tenors Startseite"><img src="/assets/tango-tenors-logo-transparent.png?v=2" alt="Tango Tenors" /></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Menü öffnen"><span></span><span></span></button>
       <nav id="primary-navigation" aria-label="Hauptnavigation">
-        <a href="#concert">Konzerte</a>
         <a href="#live-erleben">Live erleben</a>
+        <a href="#concert">Konzerte</a>
         <a href="#about">Über uns</a>
         <a href="#booking">Booking</a>
+        <a href="#archive">Archiv</a>
         <div class="language-switch" aria-label="Sprache"><a href="/" lang="de" aria-current="page">DE</a><span aria-hidden="true">|</span><a href="/en/" lang="en">EN</a></div>
       </nav>
     </header>
@@ -52,23 +53,6 @@
         <div class="hero-foot">
           <p>Zwei Tenöre. Argentinischer Tango und italienische Lieder. Ein Konzert zwischen Buenos Aires, Neapel und Berlin.</p>
         </div>
-        <div class="hero-concert-cta" id="upcoming-concert-cta" hidden>
-          <p class="hero-concert-date"></p>
-          <p class="hero-concert-place"></p>
-          <p class="hero-concert-invitation" hidden></p>
-          <p class="hero-concert-description" hidden></p>
-          <p class="hero-concert-price" hidden></p>
-          <a class="hero-concert-map" hidden></a>
-          <a class="ticket-link ticket-link-hero"></a>
-        </div>
-      </section>
-      <section class="portrait shell" aria-label="Rolando Guy und Gastón Efficace am Klavier">
-        <div class="portrait-intro">
-          <p class="eyebrow">Buenos Aires · Neapel · Berlin</p>
-          <p class="portrait-lead">Ein Abend mit Tango, Liedern und zwei Stimmen zwischen den Kontinenten.</p>
-          <p class="portrait-caption">EIN KLAVIER<br />ZWEI TENÖRE<br />LEIDENSCHAFT PUR</p>
-        </div>
-        <figure class="portrait-frame"><img src="/assets/tango-tenors-duo-clean.jpg" width="1122" height="1402" alt="Rolando Guy und Gastón Efficace gemeinsam vor einem Klavier" /></figure>
       </section>
 
       <section class="video-section shell section-grid" id="live-erleben" aria-labelledby="video-title">
@@ -78,12 +62,27 @@
         </div>
       </section>
 
-      <section class="booking-cta shell section-grid" id="booking" aria-labelledby="booking-title">
-        <p class="eyebrow" id="booking-title">TANGO TENORS LIVE</p>
+      <section class="concert shell section-grid" id="concert" aria-labelledby="concert-title">
+        <p class="eyebrow" id="concert-title">KONZERTE</p>
+        <div><div class="concert-list" id="upcoming-concert-list"></div></div>
+      </section>
+
+      <section class="about shell section-grid" id="about" aria-labelledby="about-title">
+        <p class="eyebrow" id="about-title">ÜBER UNS</p>
         <div>
-          <p class="booking-statement">Für Konzerte, Festivals und besondere Veranstaltungen.</p>
-          <a class="ticket-link booking-link" href="#contact">KONZERT ANFRAGEN <span aria-hidden="true">↗</span></a>
+          <p class="statement">Tango Tenors vereint argentinischen Tango, italienische Lieder und zwei Tenorstimmen zu einem Konzert zwischen Buenos Aires, Neapel und Berlin.</p>
+          <p class="context">Von Buenos Aires über Neapel bis Berlin begegnen Tango, italienische Melodien und die Gegenwart in einer gemeinsamen musikalischen Reise.</p>
+          <p class="names">Rolando Guy · Tenor<br />Gastón Efficace · Tenor &amp; Klavier</p>
         </div>
+      </section>
+
+      <section class="portrait shell" aria-label="Rolando Guy und Gastón Efficace am Klavier">
+        <div class="portrait-intro">
+          <p class="eyebrow">Buenos Aires · Neapel · Berlin</p>
+          <p class="portrait-lead">Ein Abend mit Tango, Liedern und zwei Stimmen zwischen den Kontinenten.</p>
+          <p class="portrait-caption">EIN KLAVIER<br />ZWEI TENÖRE<br />LEIDENSCHAFT PUR</p>
+        </div>
+        <figure class="portrait-frame"><img src="/assets/tango-tenors-duo-clean.jpg" width="1122" height="1402" alt="Rolando Guy und Gastón Efficace gemeinsam vor einem Klavier" /></figure>
       </section>
 
       <section class="live-section shell" aria-labelledby="live-title">
@@ -103,15 +102,6 @@
         </div>
       </section>
 
-      <section class="about shell section-grid" id="about" aria-labelledby="about-title">
-        <p class="eyebrow" id="about-title">ÜBER UNS</p>
-        <div>
-          <p class="statement">Tango Tenors vereint argentinischen Tango, italienische Lieder und zwei Tenorstimmen zu einem Konzert zwischen Buenos Aires, Neapel und Berlin.</p>
-          <p class="context">Von Buenos Aires über Neapel bis Berlin begegnen Tango, italienische Melodien und die Gegenwart in einer gemeinsamen musikalischen Reise.</p>
-          <p class="names">Rolando Guy · Tenor<br />Gastón Efficace · Tenor &amp; Klavier</p>
-        </div>
-      </section>
-
       <section class="live-section shell" aria-labelledby="stage-title">
         <div class="section-grid live-header">
           <p class="eyebrow" id="stage-title">AUF DER BÜHNE</p>
@@ -124,11 +114,6 @@
             <img src="/assets/live/DSC03287-1800.webp" srcset="/assets/live/DSC03287-900.webp 900w, /assets/live/DSC03287-1800.webp 1800w" sizes="(max-width: 600px) calc(100vw - 36px), 38vw" width="3376" height="6000" loading="lazy" decoding="async" alt="Gastón Efficace spielt Klavier und singt" />
           </figure>
         </div>
-      </section>
-
-      <section class="concert shell section-grid" id="concert" aria-labelledby="concert-title">
-        <p class="eyebrow" id="concert-title">KONZERTE</p>
-        <div><div class="concert-list" id="upcoming-concert-list"></div><div class="concert-list" id="concert-list"></div></div>
       </section>
 
       <section class="live-section shell" aria-labelledby="closing-title">
@@ -149,6 +134,14 @@
         <p class="photo-credit">Live-Fotografie: <a href="https://soniadipi.myportfolio.com/work" target="_blank" rel="noopener noreferrer">Sonia Dipi</a></p>
       </section>
 
+      <section class="booking-cta shell section-grid" id="booking" aria-labelledby="booking-title">
+        <p class="eyebrow" id="booking-title">TANGO TENORS LIVE</p>
+        <div>
+          <p class="booking-statement">Für Kulturveranstaltungen, Festivals, Theater und private Events.</p>
+          <a class="ticket-link booking-link" href="mailto:tangotenors@gmail.com">KONZERT ANFRAGEN <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
       <section class="contact shell section-grid" id="contact" aria-labelledby="contact-title">
         <p class="eyebrow" id="contact-title">KONTAKT</p>
         <div class="contact-links">
@@ -156,10 +149,15 @@
           <a href="https://instagram.com/tangotenors" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
         </div>
       </section>
+
+      <section class="concert archive shell section-grid" id="archive" aria-labelledby="archive-title">
+        <p class="eyebrow" id="archive-title">ARCHIV</p>
+        <div><div class="concert-list" id="concert-list"></div></div>
+      </section>
     </main>
     <script src="/assets/events.js?v=4"></script>
     <script src="/assets/concert-calendar.js?v=1"></script>
-    <script src="/assets/site.js?v=5" defer></script>
+    <script src="/assets/site.js?v=26" defer></script>
 
     <footer class="site-footer shell home-footer"><p>© 2026 Tango Tenors</p><div><a href="/press/">Presse</a><a href="/anti-spam/">Anti-Spam Policy</a></div></footer>
   </body>

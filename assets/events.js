@@ -11,6 +11,7 @@ window.TANGO_EVENTS = [
       en: "Tango Tenors at Haus der Sinne"
     },
     venue: "Haus der Sinne",
+    city: "Berlin",
     address: ["Ystader Straße 10", "10437 Berlin"],
     locationLabel: { de: "BERLIN, PRENZLAUER BERG", en: "BERLIN, PRENZLAUER BERG" },
     date: "2026-10-18",
@@ -42,6 +43,7 @@ window.TANGO_EVENTS = [
       en: "Tango Tenors at Clärchens Ballhaus"
     },
     venue: "Clärchens Ballhaus",
+    city: "Berlin",
     address: ["Berlin"],
     date: "2026-09-06",
     dateLabel: { de: "6. SEPTEMBER 2026", en: "6 SEPTEMBER 2026" },
@@ -55,6 +57,7 @@ window.TANGO_EVENTS = [
       en: "Tango Tenors at Clärchens Ballhaus"
     },
     venue: "Clärchens Ballhaus",
+    city: "Berlin",
     address: ["Berlin"],
     date: "2026-12-06",
     dateLabel: { de: "6. DEZEMBER 2026", en: "6 DECEMBER 2026" },
