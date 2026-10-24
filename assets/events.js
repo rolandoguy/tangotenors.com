@@ -31,6 +31,20 @@ window.TANGO_EVENTS = [
     ]
   },
   {
+    id: "claerchens-ballhaus-2026-09-06",
+    name: {
+      de: "Tango Tenors im Clärchens Ballhaus",
+      en: "Tango Tenors at Clärchens Ballhaus"
+    },
+    venue: "Clärchens Ballhaus",
+    address: ["Berlin"],
+    date: "2026-09-06",
+    dateLabel: { de: "6. SEPTEMBER 2026", en: "6 SEPTEMBER 2026" },
+    startDate: "2026-09-06",
+    price: null,
+    offers: null
+  },
+  {
     id: "claerchens-ballhaus-2026-12-06",
     name: {
       de: "Tango Tenors im Clärchens Ballhaus",

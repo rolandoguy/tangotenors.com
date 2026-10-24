@@ -3,6 +3,9 @@
   const copy = {
     de: {
       archive: "KONZERTARCHIV",
+      upcoming: "NÄCHSTE KONZERTE",
+      menuOpen: "Menü öffnen",
+      menuClose: "Menü schließen",
       details: "KONZERTDETAILS ANSEHEN",
       timeSuffix: "UHR",
       map: "ANFAHRT & VERANSTALTUNGSORT",
@@ -11,6 +14,9 @@
     },
     en: {
       archive: "CONCERT ARCHIVE",
+      upcoming: "UPCOMING CONCERTS",
+      menuOpen: "Open menu",
+      menuClose: "Close menu",
       details: "VIEW CONCERT DETAILS",
       timeSuffix: "",
       map: "DIRECTIONS & VENUE",
@@ -19,16 +25,15 @@
     }
   }[language];
   const events = window.TANGO_EVENTS || [];
-  const timeZone = "Europe/Berlin";
-  const dateParts = new Intl.DateTimeFormat("en-US", {
-    timeZone,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit"
-  }).formatToParts(new Date());
-  const part = type => dateParts.find(item => item.type === type).value;
-  const berlinToday = `${part("year")}-${part("month")}-${part("day")}`;
-  const nextEvent = events.find(event => event.date >= berlinToday);
+  const uniqueEvents = [...new Map(events.filter(event => event?.id && event?.date && event?.startDate)
+    .map(event => [event.id, event])).values()];
+  const now = Date.now();
+  const isUpcoming = event => Date.parse(event.startDate) > now;
+  const futureEvents = uniqueEvents.filter(isUpcoming)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const pastEvents = uniqueEvents.filter(event => !isUpcoming(event))
+    .sort((a, b) => b.startDate.localeCompare(a.startDate));
+  const nextEvent = futureEvents[0];
   const esc = value => String(value).replace(/[&<>"']/g, character => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"
   })[character]);
@@ -42,17 +47,19 @@
     addressCountry: "DE"
   });
 
-  const archive = document.getElementById("concert-list");
-  if (archive) {
-    archive.innerHTML = events.map(event => `
+  const renderEvents = (target, items, heading) => {
+    if (!target) return;
+    target.innerHTML = items.length ? `${heading ? `<h2 class="concert-subtitle">${esc(heading)}</h2>` : ""}${items.map(event => `
       <article class="concert-detail" id="${esc(event.id)}">
         <p class="concert-date">${esc(event.dateLabel[language])}</p>
-        <p class="concert-time">${esc(event.time)}</p>
+        ${event.time ? `<p class="concert-time">${esc(event.time)}</p>` : ""}
         <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${event.address.map(esc).join("<br />").toLocaleUpperCase(language)}</p>
         ${event.price ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
-        ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : ""}
-      </article>`).join("");
-  }
+        ${event.ticketUrl && isUpcoming(event) ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel[language])} <span aria-hidden="true">↗</span></a>` : event.ticketUrl ? `<a class="historical-link" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${language === "de" ? "VERGANGENE VERANSTALTUNG" : "PAST EVENT"} <span aria-hidden="true">↗</span></a>` : ""}
+      </article>`).join("")}` : "";
+  };
+  renderEvents(document.getElementById("upcoming-concert-list"), futureEvents, copy.upcoming);
+  renderEvents(document.getElementById("concert-list"), pastEvents, copy.archive);
 
   if (nextEvent) {
     const cta = document.getElementById("upcoming-concert-cta");
@@ -105,7 +112,7 @@
     url: language === "de" ? "https://tangotenors.com/" : "https://tangotenors.com/en/",
     sameAs: ["https://www.instagram.com/tangotenors/"],
     member: copy.members.map(name => ({ "@type": "Person", name })),
-    event: events.map(event => ({
+    event: futureEvents.map(event => ({
       "@type": "MusicEvent",
       name: event.name[language],
       startDate: event.startDate,
@@ -129,4 +136,39 @@
   schema.type = "application/ld+json";
   schema.textContent = JSON.stringify(musicGroup);
   document.head.append(schema);
+
+  const header = document.querySelector(".site-header");
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.getElementById("primary-navigation");
+  if (header && toggle && nav) {
+    const setMenu = open => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? copy.menuClose : copy.menuOpen);
+      header.classList.toggle("menu-open", open);
+      document.body.classList.toggle("menu-is-open", open);
+    };
+    toggle.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+    nav.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener("click", () => setMenu(false)));
+    document.addEventListener("keydown", event => { if (event.key === "Escape") { setMenu(false); toggle.focus(); } });
+    document.addEventListener("click", event => { if (!header.contains(event.target)) setMenu(false); });
+    const languageLinks = nav.querySelectorAll(".language-switch a");
+    const syncLanguageAnchors = () => languageLinks.forEach(link => {
+      link.href = `${link.origin}${link.pathname}${window.location.hash}`;
+    });
+    syncLanguageAnchors();
+    window.addEventListener("hashchange", syncLanguageAnchors);
+    const sections = [...nav.querySelectorAll('a[href^="#"]')].map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const link = nav.querySelector(`a[href="#${entry.target.id}"]`);
+          if (link && entry.isIntersecting) {
+            nav.querySelectorAll("a[aria-current='location']").forEach(item => item.removeAttribute("aria-current"));
+            link.setAttribute("aria-current", "location");
+          }
+        });
+      }, { rootMargin: "-20% 0px -68% 0px" });
+      sections.forEach(section => observer.observe(section));
+    }
+  }
 })();
