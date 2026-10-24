@@ -5,7 +5,7 @@ const vm = require("node:vm");
 const calendar = require("../assets/concert-calendar.js");
 
 const source = { window: {} };
-vm.runInNewContext(fs.readFileSync(require.resolve("../assets/events.js"), "utf8"), source);
+vm.runInNewContext(fs.readFileSync(require.resolve("../assets/events-v2.js"), "utf8"), source);
 const settings = source.window.TANGO_EVENT_SETTINGS;
 const byId = new Map(source.window.TANGO_EVENTS.map(event => [event.id, event]));
 const events = [
