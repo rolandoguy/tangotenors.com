@@ -172,7 +172,7 @@ nav a[aria-current="location"] { color:var(--accent); }
   .hero { padding-top:16px; padding-bottom:clamp(36px, 4vw, 54px); }
   .hero-title { margin-top:24px; width:max-content; max-width:100%; font-size:clamp(126px, 15vw, 220px); }
   .hero-concert-cta { margin-top:24px; }
-  .intro-names { white-space:nowrap; }
+  .intro-names { align-self:end; justify-self:end; width:100%; max-width:450px; font-size:clamp(23px, 1.8vw, 26px); line-height:1.4; }
 }
 @media (min-width:601px) and (max-width:1099px) {
   .hero { padding-top:16px; }
