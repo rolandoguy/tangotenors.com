@@ -8,6 +8,7 @@
       button.setAttribute("aria-pressed", String(button.dataset.langToggle === language));
     });
     try { localStorage.setItem("tt-language", language); } catch (error) {}
+    document.dispatchEvent(new Event("tt:languagechange"));
   }
 
   buttons.forEach((button) => {

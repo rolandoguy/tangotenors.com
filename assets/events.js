@@ -1,3 +1,8 @@
+window.TANGO_EVENT_SETTINGS = {
+  timeZone: "Europe/Berlin",
+  defaultDurationMinutes: 120
+};
+
 window.TANGO_EVENTS = [
   {
     id: "haus-der-sinne-2026-10-18",
@@ -40,7 +45,6 @@ window.TANGO_EVENTS = [
     address: ["Berlin"],
     date: "2026-09-06",
     dateLabel: { de: "6. SEPTEMBER 2026", en: "6 SEPTEMBER 2026" },
-    startDate: "2026-09-06",
     price: null,
     offers: null
   },
