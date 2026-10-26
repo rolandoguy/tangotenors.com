@@ -79,6 +79,11 @@ nav a[aria-current="location"] { color:var(--accent); }
 .ticket-link span { font-family:"DM Sans",sans-serif; }
 .ticket-link-hero { min-height:48px; justify-content:center; margin-top:0; padding:12px 17px; background:var(--accent); color:var(--light); font-family:"Barlow Condensed", Impact, sans-serif; font-size:19px; font-weight:700; letter-spacing:.05em; }
 .ticket-link-hero:hover { background:var(--light); color:var(--paper); }
+.concert-booking-link[hidden] { display:none; }
+.concert-booking-link { margin-top:26px; color:var(--ink); font-size:13px; font-weight:700; letter-spacing:.04em; }
+.concert-description { max-width:620px; margin-top:18px !important; color:var(--muted); line-height:1.55; }
+.concert-accessibility { margin-top:12px !important; color:var(--muted); font-size:13px; }
+.concert-map-link { display:inline-flex; gap:8px; align-items:center; margin-top:14px; color:var(--muted); font-size:12px; letter-spacing:.06em; text-transform:uppercase; }
 .contact { padding-bottom:130px; }
 .contact-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; font-family:"Playfair Display", Georgia, serif; font-size:clamp(24px, 3vw, 40px); line-height:1.05; overflow-wrap:anywhere; }
 .contact-links span { font-family:"DM Sans", sans-serif; color:var(--accent); font-size:.55em; }

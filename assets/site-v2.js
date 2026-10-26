@@ -36,12 +36,16 @@
           ? `<p class="venue">${esc(event.venue).toLocaleUpperCase(language)}</p>${event.city ? `<p class="archive-city">${esc(event.city).toLocaleUpperCase(language)}</p>` : ""}`
           : `${formatTime(event) ? `<p class="concert-time">${esc(formatTime(event))}</p>` : ""}
             <p class="venue">${esc(event.venue).toLocaleUpperCase(language)}<br />${(event.address || []).map(esc).join("<br />").toLocaleUpperCase(language)}</p>
+            ${event.description?.[language] ? `<p class="concert-description">${esc(event.description[language])}</p>` : ""}
+            ${event.accessibility?.[language] ? `<p class="concert-accessibility">${esc(event.accessibility[language])}</p>` : ""}
+            ${event.mapUrl ? `<a class="concert-map-link" data-outbound="maps" href="${esc(event.mapUrl)}" target="_blank" rel="noopener noreferrer">${esc(text.map)} <span aria-hidden="true">↗</span></a>` : ""}
             ${event.price?.[language] ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
             ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span></a>` : ""}`}
       </article>`).join("")}` : "";
   };
   const upcomingList = document.getElementById("upcoming-concert-list");
   const archiveList = document.getElementById("concert-list");
+  const concertBookingLink = document.querySelector(".concert-booking-link");
   const heroCta = document.getElementById("upcoming-concert-cta");
   const hero = heroCta?.closest(".hero");
   const pressNext = document.getElementById("press-next-performance");
@@ -63,16 +67,16 @@
       event.locationLabel?.[language] || (event.address || []).join(", ").toLocaleUpperCase(language)
     ].filter(Boolean).join(" | ");
     for (const [selector, value] of [
-      [".hero-concert-invitation", event.invitation?.[language]],
-      [".hero-concert-description", event.description?.[language]],
-      [".hero-concert-price", event.price?.[language]]
+      [".hero-concert-invitation", ""],
+      [".hero-concert-description", ""],
+      [".hero-concert-price", ""]
     ]) {
       const node = heroCta.querySelector(selector);
       if (node) { node.textContent = value || ""; node.hidden = !node.textContent; }
     }
     const mapLink = heroCta.querySelector(".hero-concert-map");
     if (mapLink) {
-      mapLink.hidden = !event.mapUrl;
+      mapLink.hidden = true;
       if (event.mapUrl) { mapLink.href = event.mapUrl; mapLink.dataset.outbound = "maps"; mapLink.innerHTML = `${esc(text.map)} <span aria-hidden="true">↗</span>`; }
     }
     const link = heroCta.querySelector(".ticket-link-hero");
@@ -98,11 +102,13 @@
     });
     const line = document.getElementById("press-event-line");
     const address = document.getElementById("press-event-address");
+    const accessNote = pressNext.querySelector(".event-venue-note");
     const prices = document.getElementById("press-event-tickets");
     const ticket = document.getElementById("press-event-ticket-link");
     if (!event) {
       if (line) line.textContent = text.noDate;
       if (address) address.hidden = true;
+      if (accessNote) accessNote.hidden = true;
       if (prices) prices.hidden = true;
       if (ticket) ticket.hidden = true;
       return;
@@ -110,16 +116,20 @@
     if (line) {
       const place = event.locationLabel?.[language] || event.address?.[event.address.length - 1] || "Berlin";
       const time = formatTime(event);
-      line.textContent = `${event.venue} · ${place}\n${formatDate(event)}${time ? ` · ${time}` : ""}`;
+      const duration = event.durationLabel?.[language];
+      line.textContent = `${event.venue} · ${place}\n${formatDate(event)}${duration ? ` · ${duration}` : time ? ` · ${time}` : ""}`;
     }
     if (address) {
       const streetLines = (event.address || []).filter((value, index, list) => !(index === list.length - 1 && value === "Berlin"));
       address.textContent = streetLines.join("\n"); address.hidden = !address.textContent;
     }
+    if (accessNote) { accessNote.textContent = event.accessibility?.[language] || ""; accessNote.hidden = !accessNote.textContent; }
     if (prices) { prices.textContent = event.price?.[language] || ""; prices.hidden = !prices.textContent; }
     if (ticket) {
       ticket.hidden = false;
-      ticket.href = event.ticketUrl || `/#concert`;
+      ticket.href = event.ticketUrl
+        ? event.ticketUrl.replace("/event/en/", language === "de" ? "/event/de/" : "/event/en/")
+        : `/#concert`;
       ticket.dataset.concertId = event.id;
       if (event.ticketUrl) ticket.dataset.outbound = "ticket"; else delete ticket.dataset.outbound;
       ticket.querySelectorAll(".press-ticket-label").forEach(labelNode => {
@@ -155,6 +165,16 @@
     previousState = state;
     renderEvents(upcomingList, snapshot.upcoming, text.upcoming);
     renderEvents(archiveList, snapshot.archived, text.archive, true);
+    if (concertBookingLink) {
+      const nextTicketEvent = snapshot.upcoming.find(event => event.ticketUrl);
+      concertBookingLink.hidden = !nextTicketEvent;
+      if (nextTicketEvent) {
+        concertBookingLink.href = nextTicketEvent.ticketUrl;
+        concertBookingLink.textContent = `${language === "de" ? "TICKETS RESERVIEREN · " : "BOOK TICKETS · "}${formatDate(nextTicketEvent)} ↗`;
+        concertBookingLink.target = "_blank";
+        concertBookingLink.rel = "noopener noreferrer";
+      }
+    }
     renderHero(snapshot.upcoming[0]);
     renderPressNext(snapshot.upcoming[0]);
     updateStructuredData(snapshot.upcoming);

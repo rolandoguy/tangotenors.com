@@ -58,14 +58,30 @@ window.TANGO_EVENTS = [
     },
     venue: "Clärchens Ballhaus",
     city: "Berlin",
-    address: ["Berlin"],
+    address: ["Auguststraße 24/25", "10115 Berlin"],
+    accessibility: { de: "Im Spiegelsaal · 1. Etage · nicht barrierefrei", en: "Mirror Hall · 1st floor · not wheelchair accessible" },
+    locationLabel: { de: "BERLIN · AUGUSTSTRASSE 24/25", en: "BERLIN · AUGUSTSTRASSE 24/25" },
     date: "2026-12-06",
     dateLabel: { de: "6. DEZEMBER 2026", en: "6 DECEMBER 2026" },
+    weekdayLabel: { de: "SONNTAG", en: "SUNDAY" },
     startDate: "2026-12-06T20:00:00+01:00",
     time: "20:00",
+    durationLabel: { de: "20:00–22:00", en: "8:00–10:00 pm" },
     ticketUrl: "https://www.yesticket.org/event/en/tango-tenors-06-12-26/",
     ticketLabel: { de: "TICKETS RESERVIEREN", en: "BOOK TICKETS" },
-    price: null,
-    offers: null
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Cl%C3%A4rchens+Ballhaus%2C+Auguststra%C3%9Fe+24%2F25%2C+10115+Berlin",
+    invitation: { de: "EIN ABEND ZWISCHEN BUENOS AIRES, NEAPEL UND BERLIN", en: "AN EVENING BETWEEN BUENOS AIRES, NAPLES AND BERLIN" },
+    description: {
+      de: "Tango Tenors im Spiegelsaal von Clärchens Ballhaus: Rolando Guy und Gastón Efficace verbinden argentinischen Tango, neapolitanische Lieder und die italienische Gesangstradition – mit Musik von Gardel und Piazzolla, neapolitanischen Canzoni und bekannten Opernmomenten.",
+      en: "Tango Tenors at the Mirror Hall of Clärchens Ballhaus: Rolando Guy and Gastón Efficace bring together Argentine tango, Neapolitan song and the Italian vocal tradition, from music by Gardel and Piazzolla to Neapolitan canzoni and familiar moments from opera."
+    },
+    price: {
+      de: "Reservierung: 25 € | Ermäßigt: 15 € · Zahlung an der Abendkasse",
+      en: "Reservation: €25 | Reduced: €15 · Pay at the box office"
+    },
+    offers: [
+      { name: { de: "Reservierung", en: "Reservation" }, price: "25" },
+      { name: { de: "Ermäßigt", en: "Reduced" }, price: "15" }
+    ]
   }
 ];

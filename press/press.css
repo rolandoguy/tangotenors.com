@@ -54,6 +54,8 @@ html[data-lang="en"] span.lang-en { display:inline; }
 .event-address, .event-tickets { margin:20px 0 0; color:var(--muted); line-height:1.5; }
 .next-performance { margin-top:48px; border-top:1px solid var(--line); padding-top:18px; }
 .next-performance p { margin:12px 0 0; }
+.next-performance .event-venue-note { margin-top:8px; color:var(--muted); font-size:13px; }
+.next-performance .event-venue-note[hidden] { display:none; }
 .programme-intro time { display:block; margin-bottom:28px; color:var(--muted); font-size:14px; letter-spacing:.06em; }
 .programme-intro time strong { color:var(--ink); font-family:"Barlow Condensed",Impact,sans-serif; font-size:42px; }
 .programme-list { margin:0; padding:0; list-style:none; counter-reset:programme; column-count:2; column-gap:36px; }
