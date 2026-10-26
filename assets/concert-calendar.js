@@ -19,6 +19,12 @@
     return Number.isFinite(parsed) ? parsed : null;
   }
 
+  function ticketUrlFor(event, language) {
+    if (!event || typeof event.ticketUrl !== "string") return "";
+    const locale = language === "de" ? "de" : "en";
+    return event.ticketUrl.replace(/\/event\/(?:de|en)\//, `/event/${locale}/`);
+  }
+
   function berlinDate(timestamp, timeZone) {
     const parts = new Intl.DateTimeFormat("en-GB", {
       timeZone,
@@ -132,5 +138,5 @@
     return validTransitions.length ? Math.min(...validTransitions) : now + 60_000;
   }
 
-  return { classify, eventDate, finishTime, nextTransition, parseInstant };
+  return { classify, eventDate, finishTime, nextTransition, parseInstant, ticketUrlFor };
 });

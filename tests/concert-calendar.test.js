@@ -21,6 +21,14 @@ test("the canonical source includes only Tango Tenors concerts", () => {
   assert.ok(source.window.TANGO_EVENTS.every(event => !JSON.stringify(event).includes("Pasiones del Sur")));
 });
 
+test("ticket links follow the selected site language", () => {
+  const event = { ticketUrl: "https://www.yesticket.org/event/en/tango-tenors-06-12-26/" };
+  assert.equal(calendar.ticketUrlFor(event, "de"), "https://www.yesticket.org/event/de/tango-tenors-06-12-26/");
+  assert.equal(calendar.ticketUrlFor(event, "en"), "https://www.yesticket.org/event/en/tango-tenors-06-12-26/");
+  assert.equal(calendar.ticketUrlFor({ ticketUrl: "https://example.org/book" }, "de"), "https://example.org/book");
+  assert.equal(calendar.ticketUrlFor(null, "de"), "");
+});
+
 test("requested 2026 concerts are classified, sorted, and appear once", () => {
   const snapshot = calendar.classify(events, instant("2026-10-24T12:00:00Z"), settings);
   assert.deepEqual(snapshot.archived.map(event => event.id), ["haus-der-sinne-2026-10-18", "claerchens-ballhaus-2026-09-06"]);

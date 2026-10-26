@@ -104,7 +104,9 @@ html[data-lang="en"] span.lang-en { display:inline; }
 }
 @media (max-width:680px) {
   .press-header nav > a:first-child { display:none; }
-  .press-header nav { gap:14px; }
+  .press-header nav { position:static; flex-direction:row; align-items:center; gap:14px; max-height:none; overflow:visible; padding:0; background:transparent; opacity:1; }
+  .press-header nav > a { padding:0; border:0; font-family:inherit; font-size:12px; letter-spacing:.04em; }
+  .press-header nav .language-switch { align-self:auto; margin-top:0; font-size:12px; }
   .press-hero { padding-top:72px; }
   .press-hero-copy h1 { font-size:clamp(70px,22vw,104px); }
   .press-hero-image { width:100%; }

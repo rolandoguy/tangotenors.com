@@ -40,7 +40,7 @@
             ${event.accessibility?.[language] ? `<p class="concert-accessibility">${esc(event.accessibility[language])}</p>` : ""}
             ${event.mapUrl ? `<a class="concert-map-link" data-outbound="maps" href="${esc(event.mapUrl)}" target="_blank" rel="noopener noreferrer">${esc(text.map)} <span aria-hidden="true">↗</span></a>` : ""}
             ${event.price?.[language] ? `<p class="ticket-price">${esc(event.price[language]).replace("\n", "<br />")}</p>` : ""}
-            ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(event.ticketUrl)}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span></a>` : ""}`}
+            ${event.ticketUrl ? `<a class="ticket-link" data-outbound="ticket" data-concert-id="${esc(event.id)}" href="${esc(calendar.ticketUrlFor(event, language))}" target="_blank" rel="noopener noreferrer">${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span></a>` : ""}`}
       </article>`).join("")}` : "";
   };
   const upcomingList = document.getElementById("upcoming-concert-list");
@@ -83,7 +83,7 @@
     if (link) {
       link.hidden = false;
       if (event.ticketUrl) {
-        link.href = event.ticketUrl; link.target = "_blank"; link.rel = "noopener noreferrer";
+        link.href = calendar.ticketUrlFor(event, language); link.target = "_blank"; link.rel = "noopener noreferrer";
         link.dataset.outbound = "ticket"; link.dataset.concertId = event.id;
         link.innerHTML = `${esc(event.ticketLabel?.[language] || text.details)} <span aria-hidden="true">↗</span>`;
       } else {
@@ -128,7 +128,7 @@
     if (ticket) {
       ticket.hidden = false;
       ticket.href = event.ticketUrl
-        ? event.ticketUrl.replace("/event/en/", language === "de" ? "/event/de/" : "/event/en/")
+        ? calendar.ticketUrlFor(event, language)
         : `/#concert`;
       ticket.dataset.concertId = event.id;
       if (event.ticketUrl) ticket.dataset.outbound = "ticket"; else delete ticket.dataset.outbound;
@@ -169,7 +169,7 @@
       const nextTicketEvent = snapshot.upcoming.find(event => event.ticketUrl);
       concertBookingLink.hidden = !nextTicketEvent;
       if (nextTicketEvent) {
-        concertBookingLink.href = nextTicketEvent.ticketUrl;
+        concertBookingLink.href = calendar.ticketUrlFor(nextTicketEvent, language);
         concertBookingLink.textContent = `${language === "de" ? "TICKETS RESERVIEREN · " : "BOOK TICKETS · "}${formatDate(nextTicketEvent)} ↗`;
         concertBookingLink.target = "_blank";
         concertBookingLink.rel = "noopener noreferrer";
